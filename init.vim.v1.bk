@@ -1,0 +1,69 @@
+set runtimepath^=/.vim runtimepath+=~/.vim/afte:qr
+let &packpath = &runtimepath
+
+"--------------------------------------------------------------------------------
+" PRELOAD
+"--------------------------------------------------------------------------------
+syntax on
+set expandtab ts=2 sw=2 ai
+set relativenumber
+set exrc
+set secure
+set completeopt-=preview
+set laststatus=2
+set nowrap
+set encoding=utf8
+
+"--------------------------------------------------------------------------------
+" PLUGINS
+"--------------------------------------------------------------------------------
+call plug#begin('~/.config/nvim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'valloric/youcompleteme'
+Plug 'mxw/vim-jsx'
+Plug 'mileszs/ack.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'w0rp/ale'
+Plug 'nightsense/cosmic_latte'
+Plug 'scrooloose/nerdcommenter'
+Plug 'prettier/vim-prettier'
+Plug 'Chiel92/vim-autoformat'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+
+"--------------------------------------------------------------------------------
+" CONFIGURATION
+"--------------------------------------------------------------------------------
+let g:ale_fixers = {
+      \  'javascript': ['eslint'],
+      \  'typescript': ['prettier', 'eslint'],
+      \  'html': ['prettier']
+      \}
+
+let g:ale_sign_error = '🥵'
+let g:ale_sign_warning = '😨'
+let g:ale_fix_on_save = 1
+let g:ag_working_path_mode='r'
+let g:lightline = {
+      \     'active': {
+      \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+      \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
+      \     }
+      \ }
+
+"--------------------------------------------------------------------------------
+" KEYMAPS
+"--------------------------------------------------------------------------------
+inoremap  jk <Esc>
+map       <C-f>       :BLines<CR>
+map       <C-b>       :NERDTreeToggle<CR>
+map       <C-p>       :GFiles<CR>
+map       <C-r>       :FZF<CR>
+map       <C-s>       :w<CR>
+map       <C-z>       :undo<CR>
+map       <C-y>       :redo<CR>
+imap      <c-x><c-l>  <plug>(fzf-complete-line)
+noremap   <F3>       :Autoformat<CR>

@@ -1,0 +1,113 @@
+set runtimepath^=/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+
+"--------------------------------------------------------------------------------
+" PRELOAD
+"--------------------------------------------------------------------------------
+syntax enable
+
+set relativenumber
+
+set smartindent
+set expandtab
+set ts=2 sw=2
+set softtabstop=2
+
+set showmatch
+set secure
+set completeopt-=preview
+set laststatus=2
+set nowrap
+set encoding=utf-8
+set smartcase
+
+"--------------------------------------------------------------------------------
+" PLUGINS
+"--------------------------------------------------------------------------------
+call plug#begin('~/.config/nvim/plugged')
+" General
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'valloric/youcompleteme'
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'chiel92/vim-autoformat'
+Plug 'lilydjwg/colorizer'
+
+" Javascript
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdcommenter'
+Plug 'prettier/vim-prettier'
+
+" Python
+Plug 'vim-python/python-syntax', { 'for': 'python' }
+Plug 'nvie/vim-flake8'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'psf/black'
+
+" Dart/Flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+
+" Theme
+Plug 'danilo-augusto/vim-afterglow'
+call plug#end()
+
+"--------------------------------------------------------------------------------
+" CONFIGURATION
+"--------------------------------------------------------------------------------
+colorscheme afterglow
+
+let g:ale_linters = {
+      \  'javascript': ['eslint'],
+      \  'typescript': ['eslint'],
+      \  'python': ['flake8']
+      \}
+let g:ale_fixers = {
+      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \  'javascript': ['prettier', 'eslint'],
+      \  'typescript': ['prettier', 'eslint'],
+      \  'python': ['black', 'isort'],
+      \}
+
+let g:ale_sign_error = 'x'
+let g:ale_sign_warning = 'o'
+let g:ale_fix_on_save = 1
+
+let g:ag_working_path_mode='r'
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+let NERDTreeShowHidden = 1
+
+let python_highlight_all = 1
+
+let g:airline_theme='afterglow'
+let g:afterglow_blackout=1
+
+"--------------------------------------------------------------------------------
+" FUNCTIONS
+"--------------------------------------------------------------------------------
+
+"--------------------------------------------------------------------------------
+" KEYMAPS
+"--------------------------------------------------------------------------------
+inoremap  jk <Esc>
+map       <C-f>       :BLines<CR>
+map       <C-p>       :GFiles<CR>
+map       <C-r>       :FZF<CR>
+map       <C-s>       :w<CR>
+map       <C-b>       :NERDTreeToggle<CR>
+map       <C-z>       :undo<CR>
+map       <C-y>       :redo<CR>
+imap      <C-x><C-l>  <plug>(fzf-complete-line)
+noremap   ff          :Autoformat<CR>
+noremap   nf          :NERDTreeFind<CR>
+nnoremap <S-k>         i<CR><ESC>

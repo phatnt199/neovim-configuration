@@ -7,12 +7,11 @@ let &packpath = &runtimepath
 syntax enable
 
 set relativenumber
-
-set smartindent
 set expandtab
-set ts=2 sw=2
-set softtabstop=2
-
+set tabstop=2
+set softtabstop=0 noexpandtab
+set shiftwidth=2
+set smartindent
 set showmatch
 set secure
 set completeopt-=preview
@@ -20,22 +19,14 @@ set laststatus=2
 set nowrap
 set encoding=utf-8
 set smartcase
+set nohlsearch
+set noswapfile
+set incsearch
 
 "--------------------------------------------------------------------------------
 " PLUGINS
 "--------------------------------------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
-" General
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'rking/ag.vim'
-Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'valloric/youcompleteme'
-Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'chiel92/vim-autoformat'
-Plug 'lilydjwg/colorizer'
 
 " Javascript
 Plug 'mxw/vim-jsx'
@@ -43,20 +34,32 @@ Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'prettier/vim-prettier'
 
-" Python
-Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'nvie/vim-flake8'
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'psf/black'
-
-" Dart/Flutter
+" Dart
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
+Plug 'natebosch/dartlang-snippets'
 
-" Theme
+" Utilities
+Plug 'lilydjwg/colorizer'
 Plug 'danilo-augusto/vim-afterglow'
+Plug 'vim-airline/vim-airline'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Plug 'valloric/youcompleteme'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdtree'
+
+Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+
+Plug 'jiangmiao/auto-pairs'
+Plug 'chiel92/vim-autoformat'
+
 call plug#end()
 
 "--------------------------------------------------------------------------------
@@ -65,16 +68,14 @@ call plug#end()
 colorscheme afterglow
 
 let g:ale_linters = {
-      \  'javascript': ['eslint'],
-      \  'typescript': ['eslint'],
-      \  'python': ['flake8']
-      \}
+			\  'javascript': ['eslint'],
+			\  'typescript': ['eslint']
+			\}
 let g:ale_fixers = {
-      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \  'javascript': ['prettier', 'eslint'],
-      \  'typescript': ['prettier', 'eslint'],
-      \  'python': ['black', 'isort'],
-      \}
+			\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+			\  'javascript': ['prettier', 'eslint'],
+			\  'typescript': ['prettier', 'eslint']
+			\}
 
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = 'o'
@@ -92,6 +93,23 @@ let python_highlight_all = 1
 let g:airline_theme='afterglow'
 let g:afterglow_blackout=1
 
+let g:dart_format_on_save = 1
+let g:dartfmt_options = ['--fix', '--line-length 160']
+let g:coc_global_extensions = [
+			\ 'coc-tsserver',
+			\ 'coc-eslint',
+			\ 'coc-prettier',
+			\ 'coc-json',
+			\ 'coc-flutter',
+			\ 'coc-yaml',
+			\ 'coc-css',
+			\ 'coc-html',
+			\ 'coc-json',
+			\ ]
+
+let g:NERDTreeGitStatusWithFlags = 1
+let g:UltiSnipsExpandTrigger = '<Nop>'
+
 "--------------------------------------------------------------------------------
 " FUNCTIONS
 "--------------------------------------------------------------------------------
@@ -99,15 +117,22 @@ let g:afterglow_blackout=1
 "--------------------------------------------------------------------------------
 " KEYMAPS
 "--------------------------------------------------------------------------------
-inoremap  jk <Esc>
-map       <C-f>       :BLines<CR>
-map       <C-p>       :GFiles<CR>
-map       <C-r>       :FZF<CR>
-map       <C-s>       :w<CR>
-map       <C-b>       :NERDTreeToggle<CR>
-map       <C-z>       :undo<CR>
-map       <C-y>       :redo<CR>
-imap      <C-x><C-l>  <plug>(fzf-complete-line)
-noremap   ff          :Autoformat<CR>
-noremap   nf          :NERDTreeFind<CR>
-nnoremap <S-k>         i<CR><ESC>
+map  <C-f>	:BLines<CR>
+map  <C-p>	:GFiles<CR>
+map  <C-r>	:FZF<CR>
+map  <C-s>	:w<CR>
+map  <C-b>	:NERDTreeToggle<CR>
+map  <C-z>	:undo<CR>
+map  <C-y>	:redo<CR>
+map  ff			:Autoformat<CR>
+map  nf			:NERDTreeFind<CR>
+
+nmap <S-k>         i<CR><ESC>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn --<Plug>(coc-rename)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+imap jk <Esc>

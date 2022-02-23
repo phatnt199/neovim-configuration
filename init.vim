@@ -36,9 +36,9 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'w0rp/ale'
 Plug 'chiel92/vim-autoformat'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'valloric/youcompleteme'
+Plug 'w0rp/ale'
 
 " Javascript
 Plug 'yuezk/vim-js'
@@ -85,47 +85,24 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='afterglow'
 
-let g:coc_global_extensions = [
-      \ 'coc-flutter',
-      \ 'coc-tslint-plugin',
-      \ 'coc-tsserver',
-      \ 'coc-css',
-      \ 'coc-html',
-      \ 'coc-json',
-      \ 'coc-prettier'
-      \ ]
-
 "--------------------------------------------------------------------------------
 " FUNCTIONS
 "--------------------------------------------------------------------------------
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 "--------------------------------------------------------------------------------
 " KEYMAPS
 "--------------------------------------------------------------------------------
-nmap  <C-f>       :BLines<CR>
-nmap  <C-p>       :GFiles<CR>
-nmap  <C-r>       :FZF<CR>
-nmap  <C-s>       :w<CR>
-nmap  <C-b>       :NERDTreeToggle<CR>
-nmap  <C-z>       :undo<CR>
-nmap  <C-y>       :redo<CR>
+nmap <C-f>       :BLines<CR>
+nmap <C-p>       :GFiles<CR>
+nmap <C-r>       :FZF<CR>
+nmap <C-s>       :w<CR>
+nmap <C-b>       :NERDTreeToggle<CR>
+nmap <C-z>       :undo<CR>
+nmap <C-y>       :redo<CR>
 nmap ff          :Autoformat<CR>
 nmap nf          :NERDTreeFind<CR>
-nmap <leader>rn <Plug>(coc-rename)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 imap jk          <Esc>
 imap <C-x><C-l>  <plug>(fzf-complete-line)
-imap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-imap <silent><expr> <c-space> coc#refresh()
+imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"

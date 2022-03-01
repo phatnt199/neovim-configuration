@@ -6,6 +6,7 @@ let &packpath = &runtimepath
 "--------------------------------------------------------------------------------
 syntax enable
 
+set hidden
 set smartindent
 set expandtab
 set ts=2 sw=2
@@ -23,6 +24,7 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set completeopt-=preview
+set shortmess+=c
 
 "--------------------------------------------------------------------------------
 " PLUGINS
@@ -36,8 +38,8 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'chiel92/vim-autoformat'
-Plug 'valloric/youcompleteme'
 Plug 'w0rp/ale'
 
 " Javascript
@@ -74,7 +76,8 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \  '*': ['remove_trailing_lines', 'trim_whitespace'],
       \  'javascript': ['prettier', 'eslint'],
-      \  'typescript': ['prettier', 'eslint']
+      \  'typescript': ['prettier', 'eslint'],
+      \  'dart': ['dartfmt'],
       \ }
 
 let g:ale_sign_error = 'x'
@@ -85,6 +88,18 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='afterglow'
 
+let g:coc_global_extensions = [
+      \ 'coc-tsserver',
+      \ 'coc-eslint',
+      \ 'coc-prettier',
+      \ 'coc-json',
+      \ 'coc-flutter',
+      \ 'coc-yaml',
+      \ 'coc-css',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ ]
+
 "--------------------------------------------------------------------------------
 " FUNCTIONS
 "--------------------------------------------------------------------------------
@@ -92,17 +107,24 @@ let g:airline_theme='afterglow'
 "--------------------------------------------------------------------------------
 " KEYMAPS
 "--------------------------------------------------------------------------------
-nmap <C-f>       :BLines<CR>
-nmap <C-p>       :GFiles<CR>
-nmap <C-r>       :FZF<CR>
-nmap <C-s>       :w<CR>
-nmap <C-b>       :NERDTreeToggle<CR>
-nmap <C-z>       :undo<CR>
-nmap <C-y>       :redo<CR>
-nmap ff          :Autoformat<CR>
-nmap nf          :NERDTreeFind<CR>
+nmap <C-f>        :BLines<CR>
+nmap <C-p>        :GFiles<CR>
+nmap <C-r>        :FZF<CR>
+nmap <C-s>        :w<CR>
+nmap <C-b>        :NERDTreeToggle<CR>
+nmap <C-z>        :undo<CR>
+nmap <C-y>        :redo<CR>
+nmap ff           :Autoformat<CR>
+nmap nf           :NERDTreeFind<CR>
+nmap <silent> gd  <Plug>(coc-definition)
+nmap <silent> gy  <Plug>(coc-type-definition)
+nmap <silent> gi  <Plug>(coc-implementation)
+nmap <silent> gr  <Plug>(coc-references)
+nmap <leader>rn   <Plug>(coc-rename)
+nmap <leader>ac   <Plug>(coc-codeaction)
 
-imap jk          <Esc>
+imap jk           <Esc>
 imap <C-x><C-l>  <plug>(fzf-complete-line)
-imap <silent><expr> <TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+imap <silent><expr> <C-space> coc#refresh()
+imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

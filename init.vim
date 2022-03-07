@@ -22,8 +22,8 @@ set relativenumber
 set nobackup
 set nowritebackup
 set cmdheight=2
-set updatetime=300
-set completeopt-=preview
+"set updatetime=500
+set completeopt=noinsert,noselect,menuone
 set shortmess+=c
 
 "--------------------------------------------------------------------------------

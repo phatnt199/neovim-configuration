@@ -1,3 +1,9 @@
 {
+  "suggest.autoTrigger": "none",
+  "suggest.floatEnable": false,
+  "suggest.enablePreselect": true,
+  "suggest.minTriggerInputLength": 4,
+  "suggest.timeout": 2000,
+  "suggest.noselect": false,
   "diagnostic.displayByAle": true
 }

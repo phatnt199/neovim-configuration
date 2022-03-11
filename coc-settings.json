@@ -3,7 +3,8 @@
   "suggest.floatEnable": false,
   "suggest.enablePreselect": true,
   "suggest.minTriggerInputLength": 4,
-  "suggest.timeout": 2000,
+  "suggest.timeout": 500,
   "suggest.noselect": false,
+  "diagnostic.enable": false,
   "diagnostic.displayByAle": true
 }

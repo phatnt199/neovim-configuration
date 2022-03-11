@@ -116,12 +116,12 @@ nmap <C-z>        :undo<CR>
 nmap <C-y>        :redo<CR>
 nmap ff           :Autoformat<CR>
 nmap nf           :NERDTreeFind<CR>
+nmap <leader>ac   :CocAction<CR>
+nmap <leader>rn   <Plug>(coc-rename)
 nmap <silent> gd  <Plug>(coc-definition)
 nmap <silent> gy  <Plug>(coc-type-definition)
 nmap <silent> gi  <Plug>(coc-implementation)
 nmap <silent> gr  <Plug>(coc-references)
-nmap <leader>rn   <Plug>(coc-rename)
-nmap <leader>ac   <Plug>(coc-codeaction)
 
 imap jk           <Esc>
 imap <C-x><C-l>  <plug>(fzf-complete-line)

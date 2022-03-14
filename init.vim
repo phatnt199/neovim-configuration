@@ -22,8 +22,7 @@ set relativenumber
 set nobackup
 set nowritebackup
 set cmdheight=2
-"set updatetime=500
-set completeopt=noinsert,noselect,menuone
+set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 "--------------------------------------------------------------------------------
@@ -38,9 +37,9 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'chiel92/vim-autoformat'
-Plug 'w0rp/ale'
+Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'nvim-lua/completion-nvim'
 
 " Javascript
 Plug 'yuezk/vim-js'
@@ -69,36 +68,60 @@ let g:afterglow_blackout=1
 let NERDTreeShowHidden = 1
 let g:ag_working_path_mode='r'
 
-let g:ale_linters = {
-      \  'javascript': ['eslint'],
-      \  'typescript': ['eslint']
-      \ }
-let g:ale_fixers = {
-      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \  'javascript': ['prettier', 'eslint'],
-      \  'typescript': ['prettier', 'eslint'],
-      \  'dart': ['dartfmt'],
-      \ }
-
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = 'o'
-let g:ale_fix_on_save = 1
-
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='afterglow'
 
-let g:coc_global_extensions = [
-      \ 'coc-tsserver',
-      \ 'coc-eslint',
-      \ 'coc-prettier',
-      \ 'coc-json',
-      \ 'coc-flutter',
-      \ 'coc-yaml',
-      \ 'coc-css',
-      \ 'coc-html',
-      \ 'coc-json',
-      \ ]
+lua << EOF
+local lspConfig = require('lspconfig')
+local saga = require('lspsaga')
+
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+-- Enable completion triggered by <c-x><c-o>
+vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+-- Mappings.
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-space>', '<cmd>lua vim.lsp.buf.completion()<CR>', opts)
+end
+
+local servers = { 'tsserver', 'dartls' }
+for _, lsp in pairs(servers) do
+  lspConfig[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+      }
+    }
+
+  saga.init_lsp_saga {
+    error_sign = 'e',
+    warn_sign = 'w',
+    hint_sign = 'h',
+    infor_sign = 'i',
+    border_style = "round",
+    }
+end
+EOF
 
 "--------------------------------------------------------------------------------
 " FUNCTIONS
@@ -114,17 +137,12 @@ nmap <C-s>        :w<CR>
 nmap <C-b>        :NERDTreeToggle<CR>
 nmap <C-z>        :undo<CR>
 nmap <C-y>        :redo<CR>
-nmap ff           :Autoformat<CR>
 nmap nf           :NERDTreeFind<CR>
-nmap <leader>ac   :CocAction<CR>
-nmap <leader>rn   <Plug>(coc-rename)
-nmap <silent> gd  <Plug>(coc-definition)
-nmap <silent> gy  <Plug>(coc-type-definition)
-nmap <silent> gi  <Plug>(coc-implementation)
-nmap <silent> gr  <Plug>(coc-references)
+nmap <silent>K    :Lspsaga hover_doc<CR>
+nmap <silent>gh   <Cmd>Lspsaga lsp_finder<CR>
 
 imap jk           <Esc>
-imap <C-x><C-l>  <plug>(fzf-complete-line)
-imap <silent><expr> <C-space> coc#refresh()
-imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-imap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <C-x><C-l>   <plug>(fzf-complete-line)
+imap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
+imap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

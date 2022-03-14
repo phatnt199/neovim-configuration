@@ -39,6 +39,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " Javascript
 Plug 'yuezk/vim-js'
@@ -72,23 +79,15 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='afterglow'
 
 lua << EOF
-local lspConfig = require('lspconfig')
-local saga = require('lspsaga')
-
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
--- Enable completion triggered by <c-x><c-o>
 vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
--- Mappings.
--- See `:help vim.lsp.*` for documentation on any of the below functions
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -98,24 +97,53 @@ vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+-- LSP SAGA
+local saga = require('lspsaga')
+saga.init_lsp_saga()
+
+-- LSP CMP
+local cmp = require('cmp')
+local cmpNvimLsp = require('cmp_nvim_lsp')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+    vim.fn["vsnip#anonymous"](args.body)
+  end,
+  },
+  mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable,
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+  sources = cmp.config.sources({
+  { name = 'nvim_lsp' },
+  { name = 'vsnip' },
+  }, {
+  { name = 'buffer' },
+  })
+})
+local capabilities = cmpNvimLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- LSP CONFIG
+local lspConfig = require('lspconfig')
 local servers = { 'tsserver', 'dartls' }
 for _, lsp in pairs(servers) do
   lspConfig[lsp].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
       }
-    }
-
-  saga.init_lsp_saga {
-    error_sign = 'e',
-    warn_sign = 'w',
-    hint_sign = 'h',
-    infor_sign = 'i',
-    border_style = "round",
     }
 end
 EOF

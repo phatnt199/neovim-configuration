@@ -22,7 +22,7 @@ set relativenumber
 set nobackup
 set nowritebackup
 set cmdheight=2
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 set shortmess+=c
 
 "--------------------------------------------------------------------------------
@@ -37,8 +37,15 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " Javascript
 Plug 'yuezk/vim-js'
@@ -67,57 +74,57 @@ let g:afterglow_blackout=1
 let NERDTreeShowHidden = 1
 let g:ag_working_path_mode='r'
 
+let g:ale_linters = {
+      \  'javascript': ['eslint'],
+      \  'typescript': ['eslint']
+      \ }
+let g:ale_fixers = {
+      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \  'javascript': ['prettier', 'eslint'],
+      \  'typescript': ['prettier', 'eslint'],
+      \  'dart': ['dartfmt'],
+      \ }
+
+let g:ale_sign_error = 'x'
+let g:ale_sign_warning = 'o'
+let g:ale_fix_on_save = 1
+
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='afterglow'
 
 lua << EOF
-local lspConfig = require('lspconfig')
-local saga = require('lspsaga')
+--require'lspconfig'.tsserver.setup {}
+local cmp = require'cmp'
+local cmpLsp = require'cmp_nvim_lsp'
 
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+cmp.setup({
+snippet = {
+  expand = function(args)
+  vim.fn["vsnip#anonymous"](args.body)
+end,
+},
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable,
+      ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close(), }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"] = cmp.mapping.select_next_item(),
+      ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    },
+  sources = cmp.config.sources(
+  { { name = 'nvim_lsp' }, { name = 'vsnip' }, },
+  { { name = 'buffer' }, }
+  )
+})
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
--- Enable completion triggered by <c-x><c-o>
-vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
--- Mappings.
--- See `:help vim.lsp.*` for documentation on any of the below functions
-vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
-
-local servers = { 'tsserver', 'dartls' }
-for _, lsp in pairs(servers) do
-  lspConfig[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-      }
-    }
-
-  saga.init_lsp_saga {
-    error_sign = 'e',
-    warn_sign = 'w',
-    hint_sign = 'h',
-    infor_sign = 'i',
-    border_style = "round",
-    }
-end
+local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+require'lspconfig'.dartls.setup {
+  capabilities = capabilities
+}
 EOF
 
 "--------------------------------------------------------------------------------
@@ -127,19 +134,30 @@ EOF
 "--------------------------------------------------------------------------------
 " KEYMAPS
 "--------------------------------------------------------------------------------
-nmap <C-f>        :BLines<CR>
-nmap <C-p>        :GFiles<CR>
-nmap <C-r>        :FZF<CR>
-nmap <C-s>        :w<CR>
-nmap <C-b>        :NERDTreeToggle<CR>
-nmap <C-z>        :undo<CR>
-nmap <C-y>        :redo<CR>
-nmap nf           :NERDTreeFind<CR>
-nmap <silent>K    :Lspsaga hover_doc<CR>
-nmap <silent>gh   <Cmd>Lspsaga lsp_finder<CR>
+nmap <C-f>                :BLines<CR>
+nmap <C-p>                :GFiles<CR>
+nmap <C-r>                :FZF<CR>
+nmap <C-s>                :w<CR>
+nmap <C-b>                :NERDTreeToggle<CR>
+nmap <C-z>                :undo<CR>
+nmap <C-y>                :redo<CR>
+nmap nf                   :NERDTreeFind<CR>
+nmap <silent><space>e     :lua vim.diagnostic.open_float()<CR>
+nmap <silent>[d           :lua vim.diagnostic.goto_prev()<CR>
+nmap <silent>]d           :lua vim.diagnostic.goto_next()<CR>
+nmap <silent><space>q     :lua vim.diagnostic.setloclist()<CR>
+nmap <silent>gD           :lua vim.lsp.buf.declaration()<CR>
+nmap <silent>gd           :lua vim.lsp.buf.definition()<CR>
+nmap <silent>K            :lua vim.lsp.buf.hover()<CR>
+nmap <silent>gi           :lua vim.lsp.buf.implementation()<CR>
+nmap <silent><C-k>        :lua vim.lsp.buf.signature_help()<CR>
+nmap <silent><leader>D    :lua vim.lsp.buf.type_definition()<CR>
+nmap <silent><leader>rn   :lua vim.lsp.buf.rename()<CR>
+nmap <silent><leader>ac   :lua vim.lsp.buf.code_action()<CR>
+nmap <silent>gr           :lua vim.lsp.buf.references()<CR>
+nmap <silent>ff           :lua vim.lsp.buf.formatting()<CR>
 
-imap jk           <Esc>
-imap <C-x><C-l>   <plug>(fzf-complete-line)
-imap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
-imap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap jk                   <Esc>
+imap <C-x><C-l>           <plug>(fzf-complete-line)
+imap <expr> <Tab>         pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <expr> <S-Tab>       pumvisible() ? "\<C-p>" : "\<S-Tab>"

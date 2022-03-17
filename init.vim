@@ -24,6 +24,7 @@ set nowritebackup
 set cmdheight=2
 set completeopt=menu,menuone,noselect
 set shortmess+=c
+set background=dark
 
 "--------------------------------------------------------------------------------
 " PLUGINS
@@ -55,11 +56,9 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Dart/Flutter
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
 
 " Theme
-Plug 'danilo-augusto/vim-afterglow'
+Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'lilydjwg/colorizer'
 
@@ -68,8 +67,8 @@ call plug#end()
 "--------------------------------------------------------------------------------
 " CONFIGURATION
 "--------------------------------------------------------------------------------
-colorscheme afterglow
-let g:afterglow_blackout=1
+let g:seoul256_background = 233
+colorscheme seoul256
 
 let NERDTreeShowHidden = 1
 let g:ag_working_path_mode='r'
@@ -92,7 +91,7 @@ let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='afterglow'
+let g:airline_theme='seoul256'
 
 lua << EOF
 --require'lspconfig'.tsserver.setup {}

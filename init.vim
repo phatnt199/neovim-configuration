@@ -9,22 +9,23 @@ syntax enable
 set hidden
 set smartindent
 set expandtab
-set ts=2 sw=2
-set softtabstop=2
 set showmatch
 set secure
-set laststatus=2
 set nowrap
-set encoding=utf-8
 set smartcase
 set relativenumber
 set nobackup
 set nowritebackup
+set lazyredraw
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set cmdheight=2
+set laststatus=4
+set encoding=utf-8
 set completeopt=menu,menuone,noselect
 set shortmess+=c
 set background=dark
-set mouse=nv
 
 "--------------------------------------------------------------------------------
 " PLUGINS

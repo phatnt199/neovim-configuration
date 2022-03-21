@@ -12,7 +12,6 @@ set expandtab
 set ts=2 sw=2
 set softtabstop=2
 set showmatch
-
 set secure
 set laststatus=2
 set nowrap
@@ -25,6 +24,7 @@ set cmdheight=2
 set completeopt=menu,menuone,noselect
 set shortmess+=c
 set background=dark
+set mouse=nv
 
 "--------------------------------------------------------------------------------
 " PLUGINS

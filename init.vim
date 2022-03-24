@@ -20,12 +20,12 @@ set lazyredraw
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set cmdheight=2
-set laststatus=4
+set laststatus=2
 set encoding=utf-8
 set completeopt=menu,menuone,noselect
 set shortmess+=c
 set background=dark
+"set cmdheight=2
 
 "--------------------------------------------------------------------------------
 " PLUGINS

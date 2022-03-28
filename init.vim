@@ -77,7 +77,6 @@ let g:ag_working_path_mode='r'
 
 let g:ale_linters = {
       \  'javascript': ['eslint'],
-      \  'typescript': ['eslint']
       \ }
 
 let js_fixers = ['prettier', 'eslint']
@@ -85,8 +84,6 @@ let g:ale_fixers = {
       \  '*': ['remove_trailing_lines', 'trim_whitespace'],
       \  'javascript': js_fixers,
       \  'javascript.jsx': js_fixers,
-      \  'typescript': js_fixers,
-      \  'typescriptreact': js_fixers,
       \  'css': ['prettier'],
       \  'json': ['prettier'],
       \  'dart': ['dartfmt'],
@@ -129,7 +126,7 @@ end,
   )
 })
 
---require'lspconfig'.tsserver.setup {}
+require'lspconfig'.tsserver.setup {}
 
 local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 require'lspconfig'.dartls.setup {

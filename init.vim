@@ -61,6 +61,7 @@ Plug 'thosakwe/vim-flutter'
 " Theme
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'lilydjwg/colorizer'
 
 call plug#end()
@@ -93,7 +94,7 @@ let g:ag_working_path_mode='r'
 "let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='seoul256'
+"let g:airline_theme='seoul256'
 
 lua << EOF
 local cmp = require'cmp'
@@ -121,13 +122,12 @@ end,
   )
 })
 
+require'lspconfig'.tsserver.setup {}
 
-local servers = { 'tsserver', 'dartls' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    capabilities = capabilities
-  }
-end
+local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+require'lspconfig'.dartls.setup {
+  capabilities = capabilities
+}
 EOF
 
 "--------------------------------------------------------------------------------

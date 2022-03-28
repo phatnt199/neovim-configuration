@@ -39,7 +39,7 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -74,29 +74,28 @@ colorscheme seoul256
 let NERDTreeShowHidden = 1
 let g:ag_working_path_mode='r'
 
-let g:ale_linters = {
-      \  'javascript': ['eslint'],
-      \  'typescript': ['eslint']
-      \ }
-let g:ale_fixers = {
-      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \  'javascript': ['prettier', 'eslint'],
-      \  'typescript': ['prettier', 'eslint'],
-      \  'dart': ['dartfmt'],
-      \ }
+"let g:ale_linters = {
+      "\  'javascript': ['eslint'],
+      "\  'typescript': ['eslint']
+      "\ }
+"let g:ale_fixers = {
+      "\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+      "\  'javascript': ['prettier', 'eslint'],
+      "\  'typescript': ['prettier', 'eslint'],
+      "\  'dart': ['dartfmt'],
+      "\ }
 
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = 'o'
-let g:ale_fix_on_save = 1
-let g:ale_completion_autoimport = 0
+"let g:ale_sign_error = 'x'
+"let g:ale_sign_warning = 'o'
+"let g:ale_fix_on_save = 1
+"let g:ale_completion_autoimport = 0
 
-let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='seoul256'
 
 lua << EOF
-require'lspconfig'.tsserver.setup {}
 local cmp = require'cmp'
 local cmpLsp = require'cmp_nvim_lsp'
 
@@ -122,10 +121,13 @@ end,
   )
 })
 
-local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require'lspconfig'.dartls.setup {
-  capabilities = capabilities
-}
+
+local servers = { 'tsserver', 'dartls' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    capabilities = capabilities
+  }
+end
 EOF
 
 "--------------------------------------------------------------------------------

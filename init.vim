@@ -96,7 +96,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='seoul256'
 
 lua << EOF
---require'lspconfig'.tsserver.setup {}
+require'lspconfig'.tsserver.setup {}
 local cmp = require'cmp'
 local cmpLsp = require'cmp_nvim_lsp'
 

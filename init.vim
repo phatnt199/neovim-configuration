@@ -122,8 +122,8 @@ end,
       ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     },
   sources = cmp.config.sources(
-    { { name = 'nvim_lsp' }, { name = 'vsnip' }, },
-    { { name = 'buffer' }, }
+  { { name = 'nvim_lsp' }, { name = 'vsnip' }, },
+  { { name = 'buffer' }, }
   )
 })
 
@@ -131,7 +131,7 @@ local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_cap
 local lang_servers = { 'dartls', 'tsserver' }
 for _, lsp in pairs(lang_servers) do
   require('lspconfig')[lsp].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     }

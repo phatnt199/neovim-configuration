@@ -128,15 +128,27 @@ end,
 })
 
 local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lang_servers = { 'dartls', 'tsserver' }
-for _, lsp in pairs(lang_servers) do
-  require('lspconfig')[lsp].setup {
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
+
+require('lspconfig').dartls.setup {
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
   }
-end
+}
+
+require('lspconfig').tsserver.setup {
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+      }
+    ),
+  }
+}
 
 EOF
 

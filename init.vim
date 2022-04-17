@@ -77,7 +77,7 @@ let g:ag_working_path_mode='r'
 
 let g:ale_linters = {
       \  'javascript': ['eslint'],
-      \  'typescript': ['eslint'],
+      \  'typescript': ['eslint', 'tsserver'],
       \ }
 
 let js_fixers = ['prettier', 'eslint']
@@ -144,7 +144,9 @@ require('lspconfig').tsserver.setup {
   handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
+        virtual_text = false,
+        underline = true,
+        update_in_insert = false,
       }
     ),
   }

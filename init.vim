@@ -20,7 +20,7 @@ let g:ag_working_path_mode='r'
 
 let g:ale_linters = {
       \  'javascript': ['eslint'],
-      \  'typescript': ['eslint'],
+      \  'typescript': ['eslint', 'tsserver'],
       \ }
 
 let js_fixers = ['prettier', 'eslint']

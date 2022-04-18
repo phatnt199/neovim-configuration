@@ -1,5 +1,4 @@
 local cmp = require'cmp'
-local cmpLsp = require'cmp_nvim_lsp'
 
 cmp.setup({
 snippet = {
@@ -22,12 +21,3 @@ end,
   { { name = 'buffer' }, }
   )
 })
-
-local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require'lspconfig'.tsserver.setup {
-  capabilities = capabilities
-}
-
-require'lspconfig'.dartls.setup {
-  capabilities = capabilities
-}

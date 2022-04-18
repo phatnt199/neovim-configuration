@@ -6,10 +6,10 @@ let &packpath = &runtimepath
 syntax enable
 
 lua << EOF
-  require('settings.preload')
-  require('settings.plugin')
-  require('settings.cmp')
-  require('settings.lsp')
+  require('settings.000-preload')
+  require('settings.001-plugin')
+  require('settings.002-cmp')
+  require('settings.003-lsp')
 EOF
 
 let g:seoul256_background = 233
@@ -47,28 +47,28 @@ let g:airline_theme='seoul256'
 "--------------------------------------------------------------------------------
 " KEYMAPS
 "--------------------------------------------------------------------------------
+nmap <C-s>                :w<CR>
+nmap <C-z>                :undo<CR>
+nmap <C-y>                :redo<CR>
 nmap <C-f>                :BLines<CR>
 nmap <C-p>                :GFiles<CR>
 nmap <C-r>                :FZF<CR>
-nmap <C-s>                :w<CR>
 nmap <C-b>                :NERDTreeToggle<CR>
-nmap <C-z>                :undo<CR>
-nmap <C-y>                :redo<CR>
 nmap nf                   :NERDTreeFind<CR>
-nmap <silent><space>e     :lua vim.diagnostic.open_float()<CR>
-nmap <silent>[d           :lua vim.diagnostic.goto_prev()<CR>
-nmap <silent>]d           :lua vim.diagnostic.goto_next()<CR>
-nmap <silent><space>q     :lua vim.diagnostic.setloclist()<CR>
-nmap <silent>gD           :lua vim.lsp.buf.declaration()<CR>
-nmap <silent>gd           :lua vim.lsp.buf.definition()<CR>
-nmap <silent>K            :lua vim.lsp.buf.hover()<CR>
-nmap <silent>gi           :lua vim.lsp.buf.implementation()<CR>
-nmap <silent><C-k>        :lua vim.lsp.buf.signature_help()<CR>
-nmap <silent><leader>D    :lua vim.lsp.buf.type_definition()<CR>
-nmap <silent><leader>rn   :lua vim.lsp.buf.rename()<CR>
-nmap <silent><leader>ac   :lua vim.lsp.buf.code_action()<CR>
-nmap <silent>gr           :lua vim.lsp.buf.references()<CR>
-nmap <silent>ff           :lua vim.lsp.buf.formatting()<CR>
+nmap <space>e             :lua vim.diagnostic.open_float()<CR>
+nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
+nmap ]d                   :lua vim.diagnostic.goto_next()<CR>
+nmap <space>q             :lua vim.diagnostic.setloclist()<CR>
+nmap gD                   :lua vim.lsp.buf.declaration()<CR>
+nmap gd                   :lua vim.lsp.buf.definition()<CR>
+nmap K                    :lua vim.lsp.buf.hover()<CR>
+nmap gi                   :lua vim.lsp.buf.implementation()<CR>
+nmap <C-k>                :lua vim.lsp.buf.signature_help()<CR>
+nmap <leader>D            :lua vim.lsp.buf.type_definition()<CR>
+nmap <leader>rn           :lua vim.lsp.buf.rename()<CR>
+nmap <leader>ac           :lua vim.lsp.buf.code_action()<CR>
+nmap gr                   :lua vim.lsp.buf.references()<CR>
+nmap ff                   :lua vim.lsp.buf.formatting()<CR>
 
 imap jk                   <Esc>
 imap <expr> <Tab>         pumvisible() ? "\<C-n>" : "\<Tab>"

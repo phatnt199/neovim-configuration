@@ -19,4 +19,3 @@ vimOpt.encoding = 'utf-8'
 vimOpt.completeopt = { 'menu' , 'menuone' , 'noselect' }
 vimOpt.shortmess = vim.opt.shortmess + 'c'
 vimOpt.background = 'dark'
-

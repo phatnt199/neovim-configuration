@@ -11,10 +11,13 @@ Plug('junegunn/fzf', {
 Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
+
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+
 Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
+
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'

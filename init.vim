@@ -8,8 +8,8 @@ syntax enable
 lua << EOF
   require('settings.000-preload')
   require('settings.001-plugin')
-  require('settings.003-lsp')
   require('settings.002-cmp')
+  require('settings.003-lsp')
 EOF
 
 let g:seoul256_background = 233

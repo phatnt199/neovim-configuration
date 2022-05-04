@@ -7,15 +7,15 @@ syntax enable
 
 lua << EOF
   require('settings.000-preload')
-  require('settings.001-plugin')
-  require('settings.002-cmp')
-  require('settings.003-lsp')
+  require('settings.100-plugin')
+  require('settings.200-cmp')
+  require('settings.201-tree')
+  require('settings.300-lsp')
 EOF
 
 let g:seoul256_background = 233
 colorscheme seoul256
 
-let NERDTreeShowHidden = 1
 let g:ag_working_path_mode='r'
 
 let g:ale_linters = {
@@ -53,8 +53,9 @@ nmap <C-y>                :redo<CR>
 nmap <C-f>                :BLines<CR>
 nmap <C-p>                :GFiles<CR>
 nmap <C-r>                :FZF<CR>
-nmap <C-b>                :NERDTreeToggle<CR>
-nmap nf                   :NERDTreeFind<CR>
+nmap <C-b>                :NvimTreeToggle<CR>
+nmap <leader>r            :NvimTreeRefresh<CR>
+nmap nf                   :NvimTreeFindFile<CR>
 nmap <space>e             :lua vim.diagnostic.open_float()<CR>
 nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
 nmap ]d                   :lua vim.diagnostic.goto_next()<CR>

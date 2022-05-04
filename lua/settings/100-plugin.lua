@@ -12,8 +12,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'

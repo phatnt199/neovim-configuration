@@ -1,4 +1,12 @@
-vim.g.nvim_tree_icons = {
+local vimG = vim.g
+
+vimG.nvim_tree_show_icons = {
+  git = 0,
+  folders = 0,
+  files = 0,
+}
+
+vimG.nvim_tree_icons = {
   default = "",
   symlink = "",
   git = {
@@ -13,7 +21,7 @@ vim.g.nvim_tree_icons = {
   folder = {
     arrow_open = "",
     arrow_closed = "",
-    default = "",
+    default = "f",
     open = "",
     empty = "",
     empty_open = "",

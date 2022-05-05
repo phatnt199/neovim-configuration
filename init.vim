@@ -8,8 +8,7 @@ syntax enable
 lua << EOF
   require('settings.000-preload')
   require('settings.100-plugin')
-  require('settings.200-cmp')
-  require('settings.201-tree')
+  require('settings.200-tree')
   require('settings.300-lsp')
 EOF
 

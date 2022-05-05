@@ -16,7 +16,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
-
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'

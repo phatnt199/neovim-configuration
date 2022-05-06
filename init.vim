@@ -9,6 +9,7 @@ lua << EOF
   require('settings.000-preload')
   require('settings.100-plugin')
   require('settings.200-tree')
+  require('settings.201-comment')
   require('settings.300-lsp')
 EOF
 

@@ -13,6 +13,7 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'numToStr/Comment.nvim'
 
 Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'

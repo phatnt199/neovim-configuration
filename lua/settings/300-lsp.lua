@@ -51,3 +51,10 @@ require('lspconfig').tsserver.setup {
     ),
   }
 }
+
+require('lspconfig').rust_analyzer.setup {
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}

@@ -20,14 +20,18 @@ let g:ag_working_path_mode='r'
 
 let g:ale_linters = {
       \  'javascript': ['eslint'],
+      \  'javascriptreact': ['eslint'],
       \  'typescript': ['eslint', 'tsserver'],
+      \  'typescriptreact': ['eslint', 'tsserver'],
       \ }
 
 let js_fixers = ['prettier', 'eslint']
 let g:ale_fixers = {
       \  '*': ['remove_trailing_lines', 'trim_whitespace'],
       \  'javascript': js_fixers,
+      \  'javascriptreact': js_fixers,
       \  'typescript': js_fixers,
+      \  'typescriptreact': js_fixers,
       \  'css': ['prettier'],
       \  'json': ['prettier'],
       \  'dart': ['dartfmt'],

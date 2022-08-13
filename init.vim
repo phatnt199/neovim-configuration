@@ -13,40 +13,44 @@ lua << EOF
   require('settings.300-lsp')
 EOF
 
-let g:seoul256_background = 233
-colorscheme seoul256
+" let g:seoul256_background = 233
+" colorscheme seoul256
+colorscheme afterglow
+let g:afterglow_blackout=1
+let g:afterglow_italic_comments=1
 
 let g:ag_working_path_mode='r'
 
-let g:ale_linters = {
-      \  'javascript': ['eslint'],
-      \  'javascriptreact': ['eslint'],
-      \  'typescript': ['eslint', 'tsserver'],
-      \  'typescriptreact': ['eslint', 'tsserver'],
-      \ }
-
-let js_fixers = ['prettier', 'eslint']
-let g:ale_fixers = {
-      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \  'javascript': js_fixers,
-      \  'javascriptreact': js_fixers,
-      \  'typescript': js_fixers,
-      \  'typescriptreact': js_fixers,
-      \  'css': ['prettier'],
-      \  'json': ['prettier'],
-      \  'dart': ['dartfmt'],
-      \ }
-
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = 'o'
-let g:ale_sign_info = 'i'
-let g:ale_fix_on_save = 1
-let g:ale_completion_autoimport = 0
+" let g:ale_linters = {
+"       \  'javascript': ['eslint'],
+"       \  'javascriptreact': ['eslint'],
+"       \  'typescript': ['eslint', 'tsserver'],
+"       \  'typescriptreact': ['eslint', 'tsserver'],
+"       \ }
+"
+" let js_fixers = ['prettier', 'eslint']
+" let g:ale_fixers = {
+"       \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+"       \  'javascript': js_fixers,
+"       \  'javascriptreact': js_fixers,
+"       \  'typescript': js_fixers,
+"       \  'typescriptreact': js_fixers,
+"       \  'css': ['prettier'],
+"       \  'json': ['prettier'],
+"       \  'dart': ['dartfmt'],
+"       \ }
+"
+" let g:ale_sign_error = 'x'
+" let g:ale_sign_warning = 'o'
+" let g:ale_sign_info = 'i'
+" let g:ale_fix_on_save = 1
+" let g:ale_completion_autoimport = 0
 
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='seoul256'
+let g:airline_theme='afterglow'
+" let g:airline_theme='seoul256'
 
 "--------------------------------------------------------------------------------
 " KEYMAPS

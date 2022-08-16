@@ -13,6 +13,8 @@ lua << EOF
   require('settings.300-lsp')
 EOF
 
+" let g:seoul256_background = 233
+" colorscheme seoul256
 colorscheme afterglow
 let g:afterglow_blackout=1
 let g:afterglow_italic_comments=1
@@ -38,7 +40,7 @@ let g:ale_fixers = {
       \  'dart': ['dartfmt'],
       \ }
 
-let g:ale_set_highlights = 1
+let g:ale_set_highlights = 0
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = 'o'
 let g:ale_sign_info = 'i'
@@ -49,6 +51,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='afterglow'
+" let g:airline_theme='seoul256'
 
 "--------------------------------------------------------------------------------
 " KEYMAPS

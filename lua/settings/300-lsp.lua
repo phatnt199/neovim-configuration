@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require('cmp')
 
 cmp.setup({
   snippet = {
@@ -26,7 +26,7 @@ cmp.setup({
   })
 })
 
-local cmpLsp = require'cmp_nvim_lsp'
+local cmpLsp = require('cmp_nvim_lsp')
 local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local flags = { debounce_text_changes = 150 }
 local handlers = {
@@ -39,7 +39,8 @@ local handlers = {
   ),
 }
 
-require('lspconfig').dartls.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-require('lspconfig').tsserver.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-require('lspconfig').rust_analyzer.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-require('lspconfig').pyright.setup { capabilities = capabilities, flags = flags, handlers = handlers }
+local lspConfig = require('lspconfig')
+lspConfig.dartls.setup { capabilities = capabilities, flags = flags, handlers = handlers }
+lspConfig.tsserver.setup { capabilities = capabilities, flags = flags, handlers = handlers }
+lspConfig.rust_analyzer.setup { capabilities = capabilities, flags = flags, handlers = handlers }
+lspConfig.pyright.setup { capabilities = capabilities, flags = flags, handlers = handlers }

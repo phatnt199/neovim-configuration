@@ -40,6 +40,7 @@ let g:ale_fixers = {
       \  'dart': ['dartfmt'],
       \ }
 
+let g:ale_set_highlights = 0
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = 'o'
 let g:ale_sign_info = 'i'

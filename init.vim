@@ -38,10 +38,10 @@ let g:ale_fixers = {
       \  'dart': ['dartfmt'],
       \ }
 
-let g:ale_set_highlights = 1
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = 'o'
-let g:ale_sign_info = 'i'
+let g:ale_set_highlights = 0
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '◼'
+let g:ale_sign_info = '⚉'
 let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 0
 
@@ -56,6 +56,11 @@ let g:airline_theme='afterglow'
 nmap <C-s>                :w<CR>
 nmap <C-z>                :undo<CR>
 nmap <C-y>                :redo<CR>
+nmap <C-Up>               :resize -2<CR>
+nmap <C-Down>             :resize +2<CR>
+vmap <C-Left>             :vertical resize -2<CR>
+vmap <C-Right>            :vertical resize +2<CR>
+
 nmap <C-f>                :Telescope current_buffer_fuzzy_find<CR>
 nmap <C-p>                :Telescope git_files<CR>
 nmap <C-r>                :Telescope find_files<CR>

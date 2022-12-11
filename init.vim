@@ -58,8 +58,6 @@ nmap <C-z>                :undo<CR>
 nmap <C-y>                :redo<CR>
 nmap <C-Up>               :resize -2<CR>
 nmap <C-Down>             :resize +2<CR>
-vmap <C-Left>             :vertical resize -2<CR>
-vmap <C-Right>            :vertical resize +2<CR>
 
 nmap <C-f>                :Telescope current_buffer_fuzzy_find<CR>
 nmap <C-p>                :Telescope git_files<CR>
@@ -83,6 +81,14 @@ nmap <leader>rn           :lua vim.lsp.buf.rename()<CR>
 nmap <leader>ac           :lua vim.lsp.buf.code_action()<CR>
 nmap gr                   :lua vim.lsp.buf.references()<CR>
 nmap ff                   :lua vim.lsp.buf.formatting()<CR>
+
+nmap <leader>T            :tabnew<CR>
+nmap <leader>tn           :tabnext<CR>
+nmap <leader>tb           :tabprevious<CR>
+nmap <leader>tf           :tabfirst<CR>
+nmap <leader>tl           :tablast<CR>
+nmap <leader>tm           :tabmove<CR>
+nmap <leader>tx           :tabclose<CR>
 
 imap jk                   <Esc>
 imap <expr> <Tab>         pumvisible() ? "\<C-n>" : "\<Tab>"

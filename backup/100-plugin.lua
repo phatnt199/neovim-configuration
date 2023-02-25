@@ -4,11 +4,11 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
+Plug 'nvim-telescope/telescope-media-files.nvim'
 
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-tree/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'numToStr/Comment.nvim'
 
 Plug 'dense-analysis/ale'

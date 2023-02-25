@@ -10,6 +10,7 @@ lua << EOF
   require('settings.100-plugin')
   require('settings.200-tree')
   require('settings.201-comment')
+  require('settings.202-telescope')
   require('settings.300-lsp')
 EOF
 
@@ -45,8 +46,6 @@ let g:ale_sign_info = '⚉'
 let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 0
 
-let g:fzf_layout = { 'down': '30%' }
-
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -61,11 +60,11 @@ nmap <C-y>                :redo<CR>
 nmap <C-Up>               :resize -2<CR>
 nmap <C-Down>             :resize +2<CR>
 
-nmap <C-f>                :BLines<CR>
-nmap <C-p>                :GFiles<CR>
-nmap <C-r>                :FZF<CR>
-nmap <leader>ff           :Ag<SPACE>
-nmap <leader>fs           :Rg<CR>
+nmap <C-f>                :Telescope current_buffer_fuzzy_find<CR>
+nmap <C-p>                :Telescope git_files<CR>
+nmap <C-r>                :Telescope find_files<CR>
+nmap <leader>ff           :Telescope live_grep<CR>
+nmap <leader>fs           :Telescope grep_string<CR>
 nmap <C-b>                :NvimTreeToggle<CR>
 nmap <leader>r            :NvimTreeRefresh<CR>
 nmap nf                   :NvimTreeFindFile<CR>
@@ -82,7 +81,7 @@ nmap <leader>D            :lua vim.lsp.buf.type_definition()<CR>
 nmap <leader>rn           :lua vim.lsp.buf.rename()<CR>
 nmap <leader>ac           :lua vim.lsp.buf.code_action()<CR>
 nmap gr                   :lua vim.lsp.buf.references()<CR>
-nmap ff                   :lua vim.lsp.buf.format({ async=true })<CR>
+nmap ff                   :lua vim.lsp.buf.formatting()<CR>
 
 nmap <leader>T            :tabnew<CR>
 nmap <leader>tn           :tabnext<CR>

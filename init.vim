@@ -8,21 +8,13 @@ syntax enable
 lua << EOF
   require('settings.000-preload')
   require('settings.100-plugin')
-  require('settings.101-plugin-config')
 EOF
 
 colorscheme afterglow
 
-let g:afterglow_blackout=1
-let g:afterglow_italic_comments=1
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='afterglow'
-
 lua << EOF
+  require('settings.101-plugin-config')
   require('settings.200-tree')
-  require('settings.201-comment')
   require('settings.300-lsp')
 EOF
 
@@ -58,13 +50,8 @@ nmap <leader>ac           :lua vim.lsp.buf.code_action()<CR>
 nmap gr                   :lua vim.lsp.buf.references()<CR>
 nmap ff                   :lua vim.lsp.buf.format({ async=true })<CR>
 
-nmap <leader>T            :tabnew<CR>
-nmap <leader>tn           :tabnext<CR>
-nmap <leader>tb           :tabprevious<CR>
-nmap <leader>tf           :tabfirst<CR>
-nmap <leader>tl           :tablast<CR>
-nmap <leader>tm           :tabmove<CR>
-nmap <leader>tx           :tabclose<CR>
+nmap <C-t>                :tabnew<CR>
+nmap <C-x>                :tabclose<CR>
 
 imap jk                   <Esc>
 imap <expr> <Tab>         pumvisible() ? "\<C-n>" : "\<Tab>"

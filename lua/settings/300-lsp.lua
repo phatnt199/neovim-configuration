@@ -27,6 +27,7 @@ cmp.setup({
 })
 
 local cmpLsp = require('cmp_nvim_lsp')
+
 local capabilities = cmpLsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local flags = { debounce_text_changes = 150 }
 local handlers = {
@@ -41,8 +42,10 @@ local handlers = {
 
 local lspConfig = require('lspconfig')
 
-lspConfig.dartls.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-lspConfig.tsserver.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-lspConfig.rust_analyzer.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-lspConfig.pyright.setup { capabilities = capabilities, flags = flags, handlers = handlers }
-lspConfig.sqlls.setup { capabilities = capabilities, flags = flags, handlers = handlers }
+lspConfig.dartls.setup({ capabilities = capabilities, flags = flags, handlers = handlers })
+lspConfig.tsserver.setup({ capabilities = capabilities, flags = flags, handlers = handlers })
+lspConfig.rust_analyzer.setup({ capabilities = capabilities, flags = flags, handlers = handlers })
+lspConfig.pyright.setup({ capabilities = capabilities, flags = flags, handlers = handlers })
+lspConfig.sqlls.setup({ capabilities = capabilities, flags = flags, handlers = handlers })
+
+---------------------------------------------------------------------------------------------------

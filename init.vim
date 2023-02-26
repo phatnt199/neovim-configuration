@@ -64,8 +64,8 @@ nmap <C-Down>             :resize +2<CR>
 nmap <C-f>                :BLines<CR>
 nmap <C-p>                :GFiles<CR>
 nmap <C-r>                :FZF<CR>
-nmap <leader>ff           :Ag<SPACE>
-nmap <leader>fs           :Rg<CR>
+nmap <leader>fa           :Ag<SPACE>
+nmap <leader>ff           :Rg<CR>
 nmap <C-b>                :NvimTreeToggle<CR>
 nmap <leader>r            :NvimTreeRefresh<CR>
 nmap nf                   :NvimTreeFindFile<CR>

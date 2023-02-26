@@ -2,7 +2,9 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
+Plug('junegunn/fzf', {
+  ['do'] = vim.fn['fzf#install']
+})
 Plug 'junegunn/fzf.vim'
 
 Plug 'nvim-tree/nvim-web-devicons'

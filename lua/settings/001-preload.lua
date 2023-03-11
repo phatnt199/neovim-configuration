@@ -8,6 +8,7 @@ set.shiftwidth = 2
 set.tabstop = 2
 set.softtabstop = 2
 set.laststatus = 2
+set.cmdheight = 1
 set.showmatch = true
 
 set.hlsearch = true

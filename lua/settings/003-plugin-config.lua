@@ -12,11 +12,47 @@ vim.g.ag_working_path_mode = 'r'
 vim.g.fzf_layout = { down = '60%' }
 
 ---------------------------------------------------------
---Airline
-vim.g['airline#extensions#ale#enabled'] = 1
-vim.g['airline#extensions#tabline#left_sep'] = ' '
-vim.g['airline#extensions#tabline#left_alt_sep'] = '|'
-vim.g.airline_theme = 'afterglow'
+--LuaLine
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'codedark',
+    component_separators = { left = ' | ', right = '|'},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
 
 ---------------------------------------------------------
 --Comment
@@ -107,7 +143,7 @@ telescope.setup {
 ---------------------------------------------------------
 --Shade
 require('shade').setup({
-  overlay_opacity = 70,
+  overlay_opacity = 80,
   opacity_step = 1,
   keys = {
     brightness_up    = '<C-Up>',

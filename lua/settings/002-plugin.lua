@@ -2,11 +2,6 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
---[[ Plug('junegunn/fzf', {
-  ['do'] = vim.fn['fzf#install']
-})
-Plug 'junegunn/fzf.vim' ]]
-
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'numToStr/Comment.nvim'
@@ -16,9 +11,7 @@ Plug 'neovim/nvim-lspconfig'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug('nvim-telescope/telescope.nvim', {
-  branch = '0.1.x'
-})
+Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 Plug 'nvim-telescope/telescope-media-files.nvim'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -33,8 +26,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 
 Plug 'phatnt199/devglow'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'lilydjwg/colorizer'
 
 vim.call('plug#end')

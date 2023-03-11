@@ -66,6 +66,10 @@ require('Comment').setup()
 ---------------------------------------------------------
 --NvimTree
 require('nvim-tree').setup {
+  disable_netrw = true,
+  hijack_netrw = true,
+  open_on_setup = false,
+  open_on_tab = false,
   renderer = {
     icons = {
       webdev_colors = true,
@@ -79,29 +83,6 @@ require('nvim-tree').setup {
         folder_arrow = true,
         git = true,
       },
-      glyphs = {
-        --[[ default = "",
-        symlink = "■",
-        git = {
-          unstaged = "✗",
-          staged = "✓",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
-          ignored = "◌",
-        },
-        folder = {
-          arrow_open = "▼",
-          arrow_closed = "►",
-          default = "►",
-          open = "▼",
-          empty = "",
-          empty_open = "",
-          symlink = "►",
-          symlink_open = "▼",
-        }, ]]
-      }
     }
   },
   git = {

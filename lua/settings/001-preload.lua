@@ -1,19 +1,38 @@
-vim.opt.hidden = true
-vim.opt.smartindent = true
-vim.opt.expandtab = true
-vim.opt.showmatch = true
-vim.opt.secure = true
-vim.opt.smartcase = true
-vim.opt.relativenumber = true
-vim.opt.wrap = false
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.lazyredraw = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.laststatus = 2
-vim.opt.encoding = 'utf-8'
-vim.opt.completeopt = { 'menu' , 'menuone' , 'noselect' }
-vim.opt.shortmess = vim.opt.shortmess + 'c'
-vim.opt.background = 'dark'
+local set = vim.opt
+
+set.expandtab = true
+set.smarttab = true
+set.smartindent = true
+
+set.shiftwidth = 2
+set.tabstop = 2
+set.softtabstop = 2
+set.laststatus = 2
+set.showmatch = true
+
+set.hlsearch = true
+set.incsearch = true
+set.ignorecase = true
+set.smartcase = true
+
+set.splitbelow = true
+set.splitright = true
+set.wrap = false
+set.scrolloff = 5
+set.fileencoding = 'utf-8'
+set.encoding = 'utf-8'
+
+set.cursorline = true
+set.backup = false
+set.writebackup = false
+set.lazyredraw = true
+set.relativenumber = true
+
+set.hidden = true
+set.secure = true
+
+set.termguicolors = true
+set.background = 'dark'
+
+-- set.completeopt = { 'menu' , 'menuone' , 'noselect' }
+-- set.shortmess = set.shortmess + 'c'

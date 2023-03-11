@@ -92,6 +92,31 @@ nullLs.setup({
 })
 
 ---------------------------------------------------------
+--Telescope
+local telescope = require('telescope')
+telescope.load_extension('media_files')
+telescope.setup {
+  extensions = {
+    media_files = {
+      file_types = { 'png', 'jpg', 'jpeg', 'webp', 'pdf' },
+      find_cmd = 'rg'
+    }
+  }
+}
+
+---------------------------------------------------------
+--Shade
+require('shade').setup({
+  overlay_opacity = 70,
+  opacity_step = 1,
+  keys = {
+    brightness_up    = '<C-Up>',
+    brightness_down  = '<C-Down>',
+    toggle           = '<Leader>s',
+  }
+})
+
+---------------------------------------------------------
 --Keymaps
 vim.cmd [[
   nmap <C-s>                :w<CR>
@@ -99,12 +124,16 @@ vim.cmd [[
   nmap <C-y>                :redo<CR>
   nmap <C-Up>               :resize -2<CR>
   nmap <C-Down>             :resize +2<CR>
-  
-  nmap <C-f>                :BLines<CR>
-  nmap <C-p>                :GFiles<CR>
-  nmap <C-r>                :FZF<CR>
-  nmap <leader>fa           :Ag<SPACE>
-  nmap <leader>ff           :Rg<CR>
+
+  nmap <C-f>                :Telescope current_buffer_fuzzy_find<CR>
+  nmap <C-p>                :Telescope git_files<CR>
+  nmap <C-r>                :Telescope find_files<CR>
+  nmap <leader>ff           :Telescope live_grep<CR>
+  nmap <leader>fs           :Telescope grep_string<CR>
+  nmap <leader>gc           :Telescope git_commits<CR>
+  nmap <leader>gst          :Telescope git_status<CR>
+  nmap <leader>gb           :Telescope git_branches<CR>
+
   nmap <C-b>                :NvimTreeToggle<CR>
   nmap <leader>r            :NvimTreeRefresh<CR>
   nmap nf                   :NvimTreeFindFile<CR>
@@ -123,26 +152,12 @@ vim.cmd [[
   nmap <leader>oi           :lua vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })<CR>
   nmap gr                   :lua vim.lsp.buf.references()<CR>
   nmap ff                   :lua vim.lsp.buf.format({ async = true, timeout_ms = 2000 })<CR>
-  
+
   nmap <C-t>                :tabnew<CR>
   nmap <C-x>                :tabclose<CR>
-  
+
   imap jk                   <Esc>
 ]]
-
----------------------------------------------------------
---Telescope
---[[ local telescope = require('telescope')
-
-telescope.load_extension('media_files')
-telescope.setup {
-  extensions = {
-    media_files = {
-      file_types = { 'png', 'jpg', 'jpeg', 'webp', 'pdf' },
-      find_cmd = 'rg'
-    }
-  }
-} ]]
 
 ---------------------------------------------------------
 --ALE

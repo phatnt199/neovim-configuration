@@ -2,20 +2,24 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug('junegunn/fzf', {
+--[[ Plug('junegunn/fzf', {
   ['do'] = vim.fn['fzf#install']
 })
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' ]]
 
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'numToStr/Comment.nvim'
+Plug 'sunjon/shade.nvim'
 
--- Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug('nvim-telescope/telescope.nvim', {
+  branch = '0.1.x'
+})
+Plug 'nvim-telescope/telescope-media-files.nvim'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'

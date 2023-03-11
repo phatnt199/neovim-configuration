@@ -11,8 +11,12 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'numToStr/Comment.nvim'
 
-Plug 'dense-analysis/ale'
+-- Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'

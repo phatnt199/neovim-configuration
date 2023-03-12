@@ -1,8 +1,8 @@
 ---------------------------------------------------------
 --DevGlow
-vim.cmd('colorscheme afterglow')
---[[ vim.g.afterglow_blackout = 1
-vim.g.afterglow_italic_comments = 1 ]]
+vim.cmd('colorscheme devglow')
+vim.g.devglow_blackout = 1
+vim.g.devglow_italic_comments = 1
 
 vim.cmd [[
   highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
@@ -18,24 +18,17 @@ vim.cmd [[
 
 ---------------------------------------------------------
 --LuaLine
-require('lualine').setup {
+require('lualine').setup({
   options = {
     icons_enabled = true,
-    theme = 'codedark',
-    component_separators = { left = ' | ', right = '|'},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
+    theme = 'seoul256',
+    component_separators = { left = '|', right = '|' },
+    section_separators = { left = '', right = '' },
+    disabled_filetypes = { statusline = {}, winbar = {}, },
     ignore_focus = {},
     always_divide_middle = true,
     globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
+    refresh = { statusline = 1000, tabline = 1000, winbar = 1000, }
   },
   sections = {
     lualine_a = {'mode'},
@@ -57,7 +50,7 @@ require('lualine').setup {
   winbar = {},
   inactive_winbar = {},
   extensions = {}
-}
+})
 
 ---------------------------------------------------------
 --Comment
@@ -65,32 +58,17 @@ require('Comment').setup()
 
 ---------------------------------------------------------
 --NvimTree
-require('nvim-tree').setup {
+require('nvim-tree').setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
   open_on_tab = false,
   renderer = {
-    icons = {
-      webdev_colors = true,
-      git_placement = "before",
-      modified_placement = "after",
-      padding = " ",
-      symlink_arrow = "➛ ",
-      show = {
-        file = true,
-        folder = true,
-        folder_arrow = true,
-        git = true,
-      },
-    }
+    icons = { webdev_colors = true }
   },
-  git = {
-    enable = false,
-    ignore = false,
-    timeout = 400,
-  },
-}
+  git = { enable = false, ignore = false, timeout = 400 },
+  view = { cursorline = false }
+})
 
 local function openNvimTree()
   require("nvim-tree.api").tree.open()
@@ -125,18 +103,6 @@ telescope.setup {
     }
   }
 }
-
----------------------------------------------------------
---Shade
-require('shade').setup({
-  overlay_opacity = 80,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<Leader>s',
-  }
-})
 
 ---------------------------------------------------------
 --Keymaps
@@ -180,32 +146,3 @@ vim.cmd [[
 
   imap jk                   <Esc>
 ]]
-
----------------------------------------------------------
---ALE
---[[ local js_fixers = { 'prettier', 'eslint' }
-vim.g.ale_linters = {
-  javascript = { 'eslint' },
-  javascriptreact =  { 'eslint' },
-  typescript = { 'eslint', 'tsserver' },
-  typescriptreact = { 'eslint', 'tsserver' },
-}
-
-vim.g.ale_fixers = {
-  ['*'] = { 'remove_trailing_lines', 'trim_whitespace' },
-  javascript = js_fixers,
-  javascriptreact = js_fixers,
-  typescript = js_fixers,
-  typescriptreact = js_fixers,
-  css = { 'prettier' },
-  json = { 'prettier' },
-  dart = { 'dartfmt' },
-}
-
-vim.g.ale_set_highlights = 0
-vim.g.ale_sign_error = '✖'
-vim.g.ale_sign_warning = '◼'
-vim.g.ale_sign_info = '⚉'
-vim.g.ale_fix_on_save = 1
-vim.g.ale_completion_autoimport = 0
-vim.g.ale_virtualtext_cursor = 0 ]]

@@ -3,6 +3,7 @@ local set = vim.opt
 set.expandtab = true
 set.smarttab = true
 set.smartindent = true
+set.autoindent = true
 
 set.shiftwidth = 2
 set.tabstop = 2
@@ -23,11 +24,12 @@ set.scrolloff = 5
 set.fileencoding = 'utf-8'
 set.encoding = 'utf-8'
 
-set.cursorline = true
+set.cursorline = false
 set.backup = false
 set.writebackup = false
 set.lazyredraw = true
 set.relativenumber = true
+set.number = true
 
 set.hidden = true
 set.secure = true

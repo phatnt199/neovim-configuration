@@ -11,6 +11,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 Plug 'nvim-telescope/telescope-media-files.nvim'
+Plug('akinsho/toggleterm.nvim', { tag = '*' })
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'

@@ -57,6 +57,14 @@ require('lualine').setup({
 require('Comment').setup()
 
 ---------------------------------------------------------
+--Toggle Term
+require('toggleterm').setup({
+  size = 20,
+  open_mapping = [[<c-\>]],
+  direction = 'horizontal',
+})
+
+---------------------------------------------------------
 --NvimTree
 require('nvim-tree').setup({
   disable_netrw = true,

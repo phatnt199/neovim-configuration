@@ -9,6 +9,7 @@ vim.cmd [[
   highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
   highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
   highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+  highlight! Pmenu guibg=#51412A
 
   sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
   sign define DiagnosticSignWarn text=◼ texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
@@ -121,6 +122,7 @@ vim.cmd [[
   nmap <C-Up>               :resize -2<CR>
   nmap <C-Down>             :resize +2<CR>
 
+  nmap <leader>ts           :Telescope<CR>
   nmap <C-f>                :Telescope current_buffer_fuzzy_find<CR>
   nmap <C-p>                :Telescope git_files<CR>
   nmap <C-r>                :Telescope find_files<CR>

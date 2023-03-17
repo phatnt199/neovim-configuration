@@ -72,11 +72,29 @@ require('nvim-tree').setup({
   hijack_netrw = true,
   open_on_setup = false,
   open_on_tab = false,
+  update_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
   renderer = {
-    icons = { webdev_colors = true }
+    icons = { webdev_colors = true },
   },
   git = { enable = false, ignore = false, timeout = 400 },
-  view = { cursorline = false }
+  view = { cursorline = false },
+  diagnostics = {
+    enable = true,
+    show_on_dirs = false,
+    show_on_open_dirs = false,
+    debounce_delay = 50,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "✖",
+    },
+  },
 })
 
 local function openNvimTree()
@@ -134,7 +152,7 @@ vim.cmd [[
 
   nmap <C-b>                :NvimTreeToggle<CR>
   nmap <leader>r            :NvimTreeRefresh<CR>
-  nmap nf                   :NvimTreeFindFile<CR>
+  nmap nf                   :NvimTreeFocus<CR>
   nmap <space>e             :lua vim.diagnostic.open_float()<CR>
   nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
   nmap ]d                   :lua vim.diagnostic.goto_next()<CR>

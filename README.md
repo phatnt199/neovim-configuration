@@ -14,4 +14,6 @@ Installations:
 
 - Run ```:PlusInstall```
 
+- Restart ```nvim``` and...
+
 - Enjoy

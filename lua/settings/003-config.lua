@@ -5,16 +5,16 @@ vim.g.devglow_blackout = 1
 vim.g.devglow_italic_comments = 1
 
 vim.cmd [[
-  hi! DiagnosticLineNrError   guibg=#222222   guifg=#FF0000   gui=bold
-  hi! DiagnosticLineNrWarn    guibg=#222222   guifg=#FFA500   gui=bold
-  hi! DiagnosticLineNrInfo    guibg=#1E535D   guifg=#00FFFF   gui=bold
-  hi! DiagnosticLineNrHint    guibg=#1E205D   guifg=#0000FF   gui=bold
+  hi! DiagnosticError                         guifg=#EA5455   gui=bold
+  hi! DiagnosticWarn                          guifg=#FFA500   gui=bold
+  hi! DiagnosticInfo                          guifg=#7DB9B6   gui=bold
+  hi! DiagnosticHint                          guifg=#002B5B   gui=bold
   hi! Pmenu                   guibg=#222222
   hi! Directory                               guifg=#7A4040   gui=bold
   hi! NvimTreeSpecialFile                                     gui=bold
   hi! link NvimTreeRootFolder Directory
   hi! link NvimTreeFolderIcon Directory
-  hi! NvimTreeFolderName                      guifg=#963c3c   gui=bold
+  hi! NvimTreeFolderName                      guifg=#b0b0b0
   hi! link NvimTreeEmptyFolderName  NvimTreeFolderName
   hi! link NvimTreeOpenedFolderName NvimTreeFolderName
 

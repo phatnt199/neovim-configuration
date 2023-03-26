@@ -1,30 +1,4 @@
 ---------------------------------------------------------
---DevGlow
-vim.cmd('colorscheme devglow')
-vim.g.devglow_blackout = 1
-vim.g.devglow_italic_comments = 1
-
-vim.cmd [[
-  hi! DiagnosticError                         guifg=#EA5455   gui=bold
-  hi! DiagnosticWarn                          guifg=#FFA500   gui=bold
-  hi! DiagnosticInfo                          guifg=#7DB9B6   gui=bold
-  hi! DiagnosticHint                          guifg=#002B5B   gui=bold
-  hi! Pmenu                   guibg=#222222
-  hi! Directory                               guifg=#7A4040   gui=bold
-  hi! NvimTreeSpecialFile                                     gui=bold
-  hi! link NvimTreeRootFolder Directory
-  hi! link NvimTreeFolderIcon Directory
-  hi! NvimTreeFolderName                      guifg=#b0b0b0
-  hi! link NvimTreeEmptyFolderName  NvimTreeFolderName
-  hi! link NvimTreeOpenedFolderName NvimTreeFolderName
-
-  sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
-  sign define DiagnosticSignWarn text=◼ texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
-  sign define DiagnosticSignInfo text=! texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
-  sign define DiagnosticSignHint text=⚉ texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
-]]
-
----------------------------------------------------------
 --LuaLine
 require('lualine').setup({
   options = {
@@ -184,4 +158,17 @@ vim.cmd [[
   nmap <C-x>                :tabclose<CR>
 
   imap jk                   <Esc>
+]]
+
+---------------------------------------------------------
+--DevGlow
+vim.cmd('colorscheme devglow')
+vim.g.devglow_blackout = 1
+vim.g.devglow_italic_comments = 1
+
+vim.cmd [[
+  sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
+  sign define DiagnosticSignWarn text=◼ texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
+  sign define DiagnosticSignInfo text=! texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+  sign define DiagnosticSignHint text=⚉ texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
 ]]

@@ -5,15 +5,22 @@ vim.g.devglow_blackout = 1
 vim.g.devglow_italic_comments = 1
 
 vim.cmd [[
-  highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
-  highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
-  highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
-  highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
-  highlight! Pmenu guibg=#51412A
+  hi! DiagnosticLineNrError   guibg=#222222   guifg=#FF0000   gui=bold
+  hi! DiagnosticLineNrWarn    guibg=#222222   guifg=#FFA500   gui=bold
+  hi! DiagnosticLineNrInfo    guibg=#1E535D   guifg=#00FFFF   gui=bold
+  hi! DiagnosticLineNrHint    guibg=#1E205D   guifg=#0000FF   gui=bold
+  hi! Pmenu                   guibg=#222222
+  hi! Directory                               guifg=#7A4040   gui=bold
+  hi! NvimTreeSpecialFile                                     gui=bold
+  hi! link NvimTreeRootFolder Directory
+  hi! link NvimTreeFolderIcon Directory
+  hi! NvimTreeFolderName                      guifg=#963c3c   gui=bold
+  hi! link NvimTreeEmptyFolderName  NvimTreeFolderName
+  hi! link NvimTreeOpenedFolderName NvimTreeFolderName
 
   sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
   sign define DiagnosticSignWarn text=◼ texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
-  sign define DiagnosticSignInfo text=? texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+  sign define DiagnosticSignInfo text=! texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
   sign define DiagnosticSignHint text=⚉ texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
 ]]
 
@@ -79,7 +86,9 @@ require('nvim-tree').setup({
     ignore_list = {},
   },
   renderer = {
-    icons = { webdev_colors = true },
+    icons = { 
+      webdev_colors = true 
+    },
   },
   git = { enable = false, ignore = false, timeout = 400 },
   view = { cursorline = false },
@@ -87,7 +96,7 @@ require('nvim-tree').setup({
     enable = true,
     show_on_dirs = false,
     show_on_open_dirs = false,
-    debounce_delay = 50,
+    debounce_delay = 20,
     icons = {
       hint = "",
       info = "",
@@ -100,6 +109,7 @@ require('nvim-tree').setup({
 local function openNvimTree()
   require("nvim-tree.api").tree.open()
 end
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = openNvimTree })
 
 ---------------------------------------------------------
@@ -153,6 +163,7 @@ vim.cmd [[
   nmap <C-b>                :NvimTreeToggle<CR>
   nmap <leader>r            :NvimTreeRefresh<CR>
   nmap nf                   :NvimTreeFocus<CR>
+  nmap <leader>rf           :luafile %<CR>
   nmap <space>e             :lua vim.diagnostic.open_float()<CR>
   nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
   nmap ]d                   :lua vim.diagnostic.goto_next()<CR>

@@ -1,17 +1,19 @@
-Requirements:
+### Requirements:
 
 - Neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
 
 - Vim-plug: https://github.com/junegunn/vim-plug
 
-- Nerd Font
+- Nerd Font: https://www.nerdfonts.com/
 
-- ripgrep
+- ripgrep: https://github.com/BurntSushi/ripgrep
 
 
-Installations:
+### Installations:
 
 - Clone this repository to: ```~/.config```
+
+- Backup your old ```nvim``` configuration folder
 
 - Rename folder name ```neovim-configuration``` to ```nvim```
 

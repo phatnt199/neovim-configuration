@@ -167,6 +167,7 @@ vim.g.devglow_blackout = 1
 vim.g.devglow_italic_comments = 1
 
 vim.cmd [[
+  hi! Pmenu guibg=#333333
   sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
   sign define DiagnosticSignWarn text=◼ texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
   sign define DiagnosticSignInfo text=! texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo

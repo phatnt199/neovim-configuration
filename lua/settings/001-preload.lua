@@ -24,7 +24,8 @@ set.scrolloff = 5
 set.fileencoding = 'utf-8'
 set.encoding = 'utf-8'
 
-set.cursorline = false
+set.cursorline = true
+set.cursorlineopt = 'number'
 set.backup = false
 set.writebackup = false
 set.lazyredraw = true

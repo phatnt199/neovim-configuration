@@ -3,7 +3,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-tree/nvim-web-devicons'
 
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-tree/nvim-tree.lua'

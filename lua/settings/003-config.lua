@@ -14,8 +14,15 @@ require('lualine').setup({
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_b = {'branch', 'filename'},
+    lualine_c = {
+      {
+        'diagnostics',
+        sources = { 'nvim_lsp' },
+        sections = { 'error', 'warn', 'info', 'hint' },
+        symbols = { error = 'E:', warn = 'W:', info = 'I:', hint = 'H:' },
+      }
+    },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -52,10 +59,8 @@ require('nvim-tree').setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_tab = false,
-  update_cwd = true,
   update_focused_file = {
     enable = true,
-    update_cwd = true,
     ignore_list = {},
   },
   renderer = {
@@ -78,12 +83,6 @@ require('nvim-tree').setup({
     },
   },
 })
-
-local function openNvimTree()
-  require("nvim-tree.api").tree.open()
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = openNvimTree })
 
 ---------------------------------------------------------
 --NullLS
@@ -138,8 +137,8 @@ vim.cmd [[
   nmap nf                   :NvimTreeFocus<CR>
   nmap <leader>rf           :luafile %<CR>
   nmap <space>e             :lua vim.diagnostic.open_float()<CR>
-  nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
   nmap ]d                   :lua vim.diagnostic.goto_next()<CR>
+  nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
   nmap <space>q             :lua vim.diagnostic.setloclist()<CR>
   nmap gD                   :lua vim.lsp.buf.declaration()<CR>
   nmap gd                   :lua vim.lsp.buf.definition()<CR>
@@ -162,7 +161,6 @@ vim.cmd [[
 ---------------------------------------------------------
 --DevGlow
 vim.cmd('colorscheme devglow')
-vim.g.devglow_blackout = 1
 vim.g.devglow_italic_comments = 1
 
 vim.cmd [[

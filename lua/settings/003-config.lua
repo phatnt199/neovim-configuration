@@ -21,6 +21,8 @@ require('lualine').setup({
         sources = { 'nvim_lsp' },
         sections = { 'error', 'warn', 'info', 'hint' },
         symbols = { error = 'E:', warn = 'W:', info = 'I:', hint = 'H:' },
+        colored = true,
+        update_in_insert = true,
       }
     },
     lualine_x = {'encoding', 'fileformat', 'filetype'},

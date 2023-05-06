@@ -117,48 +117,46 @@ telescope.setup {
 
 ---------------------------------------------------------
 --Keymaps
-vim.cmd [[
-  nmap <C-s>                :w<CR>
-  nmap <C-z>                :undo<CR>
-  nmap <C-y>                :redo<CR>
-  nmap <C-Up>               :resize -2<CR>
-  nmap <C-Down>             :resize +2<CR>
+vim.keymap.set('n', '<C-s>',       ':w<CR>')
+vim.keymap.set('n', '<C-z>',       ':undo<CR>')
+vim.keymap.set('n', '<C-y>',       ':redo<CR>')
+vim.keymap.set('n', '<C-Up>',      ':resize -2<CR>')
+vim.keymap.set('n', '<C-Down>',    ':resize +2<CR>')
 
-  nmap <leader>ts           :Telescope<CR>
-  nmap <C-f>                :Telescope current_buffer_fuzzy_find<CR>
-  nmap <C-p>                :Telescope git_files<CR>
-  nmap <C-r>                :Telescope find_files<CR>
-  nmap <leader>ff           :Telescope live_grep<CR>
-  nmap <leader>fs           :Telescope grep_string<CR>
-  nmap <leader>gc           :Telescope git_commits<CR>
-  nmap <leader>gst          :Telescope git_status<CR>
-  nmap <leader>gb           :Telescope git_branches<CR>
+vim.keymap.set('n', '<leader>ts',  ':Telescope<CR>')
+vim.keymap.set('n', '<C-f>',       ':Telescope current_buffer_fuzzy_find<CR>')
+vim.keymap.set('n', '<C-p>',       ':Telescope git_files<CR>')
+vim.keymap.set('n', '<C-r>',       ':Telescope find_files<CR>')
+vim.keymap.set('n', '<leader>ff',  ':Telescope live_grep<CR>')
+vim.keymap.set('n', '<leader>fs',  ':Telescope grep_string<CR>')
+vim.keymap.set('n', '<leader>gc',  ':Telescope git_commits<CR>')
+vim.keymap.set('n', '<leader>gst', ':Telescope git_status<CR>')
+vim.keymap.set('n', '<leader>gb',  ':Telescope git_branches<CR>')
 
-  nmap <C-b>                :NvimTreeToggle<CR>
-  nmap <leader>r            :NvimTreeRefresh<CR>
-  nmap nf                   :NvimTreeFocus<CR>
-  nmap <leader>rf           :luafile %<CR>
-  nmap <space>e             :lua vim.diagnostic.open_float()<CR>
-  nmap ]d                   :lua vim.diagnostic.goto_next()<CR>
-  nmap [d                   :lua vim.diagnostic.goto_prev()<CR>
-  nmap <space>q             :lua vim.diagnostic.setloclist()<CR>
-  nmap gD                   :lua vim.lsp.buf.declaration()<CR>
-  nmap gd                   :lua vim.lsp.buf.definition()<CR>
-  nmap K                    :lua vim.lsp.buf.hover()<CR>
-  nmap gi                   :lua vim.lsp.buf.implementation()<CR>
-  nmap <C-k>                :lua vim.lsp.buf.signature_help()<CR>
-  nmap <leader>D            :lua vim.lsp.buf.type_definition()<CR>
-  nmap <leader>rn           :lua vim.lsp.buf.rename()<CR>
-  nmap <leader>ac           :lua vim.lsp.buf.code_action()<CR>
-  nmap <leader>oi           :lua vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })<CR>
-  nmap gr                   :lua vim.lsp.buf.references()<CR>
-  nmap ff                   :lua vim.lsp.buf.format({ async = true, timeout_ms = 2000 })<CR>
+vim.keymap.set('n', '<C-b>',       ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>r',   ':NvimTreeRefresh<CR>')
+vim.keymap.set('n', 'nf',          ':NvimTreeFocus<CR>')
+vim.keymap.set('n', '<leader>rf',  ':luafile %<CR>')
+vim.keymap.set('n', '<space>e',    ':lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set('n', ']d',          ':lua vim.diagnostic.goto_next()<CR>')
+vim.keymap.set('n', '[d',          ':lua vim.diagnostic.goto_prev()<CR>')
+vim.keymap.set('n', '<space>q',    ':lua vim.diagnostic.setloclist()<CR>')
+vim.keymap.set('n', 'gD',          ':lua vim.lsp.buf.declaration()<CR>')
+vim.keymap.set('n', 'gd',          ':lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', 'K',           ':lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', 'gi',          ':lua vim.lsp.buf.implementation()<CR>')
+vim.keymap.set('n', '<C-k>',       ':lua vim.lsp.buf.signature_help()<CR>')
+vim.keymap.set('n', '<leader>D',   ':lua vim.lsp.buf.type_definition()<CR>')
+vim.keymap.set('n', '<leader>rn',  ':lua vim.lsp.buf.rename()<CR>')
+vim.keymap.set('n', '<leader>ac',  ':lua vim.lsp.buf.code_action()<CR>')
+vim.keymap.set('n', '<leader>oi',  ':lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })<CR>')
+vim.keymap.set('n', 'gr',          ':lua vim.lsp.buf.references()<CR>')
+vim.keymap.set('n', 'ff',          ':lua vim.lsp.buf.format({ async = true, timeout_ms = 2000 })<CR>')
 
-  nmap <C-t>                :tabnew<CR>
-  nmap <C-x>                :tabclose<CR>
+vim.keymap.set('n', '<C-t>',       ':tabnew<CR>')
+vim.keymap.set('n', '<C-x>',       ':tabclose<CR>')
 
-  imap jk                   <Esc>
-]]
+vim.keymap.set('i', 'jk',          '<Esc>')
 
 ---------------------------------------------------------
 --DevGlow

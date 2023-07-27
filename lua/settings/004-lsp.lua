@@ -26,8 +26,7 @@ cmp.setup({
   })
 })
 
-local cmpLsp = require('cmp_nvim_lsp')
-local capabilities = cmpLsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local flags = { debounce_text_changes = 150 }
 
 local handlers = {

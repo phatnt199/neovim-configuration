@@ -118,8 +118,10 @@ telescope.setup {
 ---------------------------------------------------------
 --Keymaps
 vim.keymap.set('n', '<C-s>',       ':w<CR>')
+
 vim.keymap.set('n', '<C-z>',       ':undo<CR>')
 vim.keymap.set('n', '<C-y>',       ':redo<CR>')
+
 vim.keymap.set('n', '<C-Up>',      ':resize -2<CR>')
 vim.keymap.set('n', '<C-Down>',    ':resize +2<CR>')
 
@@ -137,6 +139,7 @@ vim.keymap.set('n', '<C-b>',       ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<leader>r',   ':NvimTreeRefresh<CR>')
 vim.keymap.set('n', 'nf',          ':NvimTreeFocus<CR>')
 vim.keymap.set('n', '<leader>rf',  ':luafile %<CR>')
+
 vim.keymap.set('n', '<space>e',    ':lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', ']d',          ':lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', '[d',          ':lua vim.diagnostic.goto_prev()<CR>')
@@ -151,12 +154,21 @@ vim.keymap.set('n', '<leader>rn',  ':lua vim.lsp.buf.rename()<CR>')
 vim.keymap.set('n', '<leader>ac',  ':lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', '<leader>oi',  ':lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })<CR>')
 vim.keymap.set('n', 'gr',          ':lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', 'ff',          ':lua vim.lsp.buf.format({ async = true, timeout_ms = 2000 })<CR>')
+vim.keymap.set('n', 'ff',          ':lua vim.lsp.buf.format({ async = true })<CR>')
 
 vim.keymap.set('n', '<C-t>',       ':tabnew<CR>')
 vim.keymap.set('n', '<C-x>',       ':tabclose<CR>')
 
 vim.keymap.set('i', 'jk',          '<Esc>')
+
+vim.keymap.set('v', 'J',           ':m \'>+1<CR>gv=gv')
+vim.keymap.set('v', 'K',           ':m \'<-2<CR>gv=gv')
+
+vim.keymap.set('x', '<leader>p',   '\"_dP')
+
+vim.keymap.set('n', '<leader>y',   '\"+y')
+vim.keymap.set('v', '<leader>y',   '\"+y')
+vim.keymap.set('n', '<leader>Y',   '\"+Y')
 
 ---------------------------------------------------------
 --DevGlow

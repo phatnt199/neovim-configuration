@@ -12,7 +12,7 @@ set.laststatus = 2
 set.cmdheight = 1
 set.showmatch = true
 
-set.hlsearch = true
+set.hlsearch = false
 set.incsearch = true
 set.ignorecase = true
 set.smartcase = true
@@ -20,7 +20,6 @@ set.smartcase = true
 set.splitbelow = true
 set.splitright = true
 set.wrap = false
-set.scrolloff = 5
 set.fileencoding = 'utf-8'
 set.encoding = 'utf-8'
 
@@ -35,6 +34,8 @@ set.number = true
 set.hidden = true
 set.secure = true
 
+set.scrolloff = 8
+set.signcolumn = 'yes'
 set.termguicolors = true
 set.background = 'dark'
 set.fillchars = 'vert:│'

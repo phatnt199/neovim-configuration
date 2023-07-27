@@ -92,8 +92,8 @@ local nullLs = require('null-ls')
 local formatting = nullLs.builtins.formatting
 nullLs.setup({
   sources = {
-    formatting.eslint,
     formatting.prettier,
+    formatting.eslint,
     formatting.stylelint,
     formatting.fixjson,
     formatting.mdformat,

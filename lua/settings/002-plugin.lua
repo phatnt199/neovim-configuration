@@ -33,5 +33,6 @@ Plug 'rebelot/kanagawa.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'savq/melange-nvim'
+Plug 'junegunn/seoul256.vim'
 
 vim.call('plug#end')

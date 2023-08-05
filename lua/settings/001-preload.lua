@@ -12,7 +12,7 @@ set.laststatus = 2
 set.cmdheight = 1
 set.showmatch = true
 
-set.hlsearch = false
+set.hlsearch = true
 set.incsearch = true
 set.ignorecase = true
 set.smartcase = true

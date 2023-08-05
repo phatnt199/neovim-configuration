@@ -14,6 +14,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 Plug 'nvim-telescope/telescope-media-files.nvim'
 Plug 'numToStr/Comment.nvim'
@@ -28,7 +29,9 @@ Plug 'lilydjwg/colorizer'
 
 -- Color Scheme
 Plug 'phatnt199/devglow'
-Plug 'iibe/gruvbox-high-contrast'
-Plug('kaicataldo/material.vim', { branch = 'main' })
+Plug 'rebelot/kanagawa.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'savq/melange-nvim'
 
 vim.call('plug#end')

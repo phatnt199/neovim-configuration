@@ -103,6 +103,46 @@ nullLs.setup({
 })
 
 ---------------------------------------------------------
+--Treesitter
+local trs = require('nvim-treesitter.configs')
+trs.setup {
+  ensure_installed = { 
+    "c", 
+    "cpp", 
+    "css",
+    "dart",
+    "dockerfile",
+    "dot",
+    "http",
+    "java",
+    "javascript",
+    "json",
+    "json5",
+    "lua", 
+    "rust",
+    "tsx",
+    "typescript",
+    "vim", 
+    "vimdoc", 
+    "yaml",
+    "zig"
+  },
+  sync_install = false,
+  auto_install = true,
+  highlight = {
+    enable = true,
+    disable = function(lang, buf)
+      local max_filesize = 100 * 1024 -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+---------------------------------------------------------
 --Telescope
 local telescope = require('telescope')
 telescope.load_extension('media_files')
@@ -172,8 +212,11 @@ vim.keymap.set('n', '<leader>Y',   '\"+Y')
 
 ---------------------------------------------------------
 --DevGlow
-vim.cmd('colorscheme devglow')
+-- vim.g.seoul256_background = 16
+-- vim.cmd('colorscheme seoul256')
+
 vim.g.devglow_italic_comments = 1
+vim.cmd('colorscheme devglow')
 
 vim.cmd [[
   sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError

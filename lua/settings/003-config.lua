@@ -212,10 +212,7 @@ vim.keymap.set('n', '<leader>Y',   '\"+Y')
 
 ---------------------------------------------------------
 --DevGlow
--- vim.g.seoul256_background = 16
--- vim.cmd('colorscheme seoul256')
-
-vim.g.devglow_italic_comments = 1
+vim.g.devglow_minimal_bg=1
 vim.cmd('colorscheme devglow')
 
 vim.cmd [[

@@ -1,3 +1,3 @@
-  require('settings.index')
+require('index')
 
-  print("Hi! Welcome and enjoy coding!")
+print("Software is like sex! It’s better to be free and no issue.")

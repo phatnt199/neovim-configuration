@@ -48,14 +48,6 @@ require('lualine').setup({
 require('Comment').setup()
 
 ---------------------------------------------------------
---Toggle Term
-require('toggleterm').setup({
-  size = 20,
-  open_mapping = [[<c-\>]],
-  direction = 'horizontal',
-})
-
----------------------------------------------------------
 --NvimTree
 require('nvim-tree').setup({
   disable_netrw = true,
@@ -180,6 +172,8 @@ vim.keymap.set('n', '<leader>r',   ':NvimTreeRefresh<CR>')
 vim.keymap.set('n', 'nf',          ':NvimTreeFocus<CR>')
 vim.keymap.set('n', '<leader>rf',  ':luafile %<CR>')
 
+vim.keymap.set('n', '<leader>dv',  ':DiffviewOpen<CR>')
+
 vim.keymap.set('n', '<space>e',    ':lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', ']d',          ':lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', '[d',          ':lua vim.diagnostic.goto_prev()<CR>')
@@ -212,7 +206,7 @@ vim.keymap.set('n', '<leader>Y',   '\"+Y')
 
 ---------------------------------------------------------
 --DevGlow
-vim.g.devglow_minimal_bg=1
+-- vim.g.devglow_minimal_bg=0
 vim.cmd('colorscheme devglow')
 
 vim.cmd [[

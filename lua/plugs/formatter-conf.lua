@@ -1,11 +1,8 @@
 local mod = require("formatter")
-local util = require("formatter.util")
-
-local lua_fmt =
 
 mod.setup {
   logging = false,
-  log_level =     vim.log.levels.WARN,
+  log_level = vim.log.levels.WARN,
   filetype = {
     dart = { require("formatter.filetypes.dart").dartformat },
     html = { require("formatter.filetypes.javascript").prettier },
@@ -23,6 +20,6 @@ mod.setup {
     typescript = { require("formatter.filetypes.typescript").prettier },
     typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
     yaml = { require("formatter.filetypes.yaml").prettier },
-    ["*"] =           { require("formatter.filetypes.any").remove_trailing_whitespace }
+    ["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace }
   }
 }

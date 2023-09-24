@@ -1,3 +1,3 @@
 require('index')
 
-print("Software is like sex! It’s better to be free and no issue.")
+print("Software's similar to sex! It’s better to be free and no issue.")

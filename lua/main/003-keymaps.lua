@@ -26,6 +26,7 @@ vim.keymap.set('n', 'nf',          ':NvimTreeFocus<CR>')
 vim.keymap.set('n', '<leader>rf',  ':luafile %<CR>')
 
 vim.keymap.set('n', '<leader>dv',  ':DiffviewOpen<CR>')
+vim.keymap.set('n', 'ff',          ':FormatWrite<CR>')
 
 vim.keymap.set('n', '<space>e',    ':lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', ']d',          ':lua vim.diagnostic.goto_next()<CR>')
@@ -41,7 +42,7 @@ vim.keymap.set('n', '<leader>rn',  ':lua vim.lsp.buf.rename()<CR>')
 vim.keymap.set('n', '<leader>ac',  ':lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', '<leader>oi',  ':lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })<CR>')
 vim.keymap.set('n', 'gr',          ':lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', 'ff',          ':lua vim.lsp.buf.format({ async = true })<CR>')
+-- vim.keymap.set('n', 'ff',          ':lua vim.lsp.buf.format({ async = true })<CR>')
 
 vim.keymap.set('n', '<C-t>',       ':tabnew<CR>')
 vim.keymap.set('n', '<C-x>',       ':tabclose<CR>')

@@ -12,13 +12,15 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
+Plug ('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 Plug 'nvim-telescope/telescope-media-files.nvim'
 
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+-- Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'mhartington/formatter.nvim'
+Plug ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 Plug 'numToStr/Comment.nvim'
 Plug 'sindrets/diffview.nvim'
+Plug 'windwp/nvim-autopairs'
 
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
@@ -31,7 +33,5 @@ Plug 'nvim-lualine/lualine.nvim'
 -- Color Scheme
 Plug 'lilydjwg/colorizer'
 Plug 'phatnt199/devglow'
-Plug 'ellisonleao/gruvbox.nvim'
-Plug 'junegunn/seoul256.vim'
 
 vim.call('plug#end')

@@ -1,4 +1,5 @@
 local set = vim.opt
+local g = vim.g
 
 set.expandtab = true
 set.smarttab = true
@@ -39,6 +40,11 @@ set.signcolumn = 'yes'
 set.termguicolors = true
 set.background = 'dark'
 set.fillchars = 'vert:│'
+
+local diabled_providers = { 'python3', 'node', 'perl', 'ruby' }
+for index in ipairs(diabled_providers) do
+  g[string.format("loaded_%s_provider", diabled_providers[index])] = 0
+end
 
 -- set.completeopt = { 'menu' , 'menuone' , 'noselect' }
 -- set.shortmess = set.shortmess + 'c'

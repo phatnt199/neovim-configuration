@@ -10,10 +10,9 @@ cmp.setup({
     ['<C-k>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), { 'i', 'c' }),
     ['<C-j>'] = cmp.mapping(cmp.mapping.scroll_docs(2), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping.complete(),
-    -- ['<C-y>'] = cmp.config.disable,
-    ['<C-e>'] = cmp.mapping({ 
-      i = cmp.mapping.abort(), 
-      c = cmp.mapping.close(), 
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ["<Tab>"] = cmp.mapping.select_next_item(),
@@ -45,13 +44,13 @@ local handlers = {
 local lspConfig = require('lspconfig')
 
 local defaultProps = {
-  capabilities = capabilities, 
-  flags = flags, 
+  capabilities = capabilities,
+  flags = flags,
   handlers = handlers,
 }
 
-lspConfig.dartls.setup(defaultProps)
-lspConfig.tsserver.setup(defaultProps)
-lspConfig.rust_analyzer.setup(defaultProps)
-lspConfig.pyright.setup(defaultProps)
-lspConfig.sqlls.setup(defaultProps)
+local lsps = { 'dartls', 'tsserver', 'rust_analyzer', 'pyright', 'sqlls' }
+for index in ipairs(lsps) do
+  local lsp = lsps[index]
+  lspConfig[lsp].setup(defaultProps)
+end

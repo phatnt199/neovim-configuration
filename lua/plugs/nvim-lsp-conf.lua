@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local lspConfig = require('lspconfig')
 
 cmp.setup({
   snippet = {
@@ -28,7 +29,9 @@ cmp.setup({
   })
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
 local flags = { debounce_text_changes = 150 }
 
 local handlers = {
@@ -40,8 +43,6 @@ local handlers = {
     }
   ),
 }
-
-local lspConfig = require('lspconfig')
 
 local defaultProps = {
   capabilities = capabilities,

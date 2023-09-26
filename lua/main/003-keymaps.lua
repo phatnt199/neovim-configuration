@@ -7,6 +7,7 @@ vim.keymap.set('n', '<C-z>',        ':undo<CR>')
 vim.keymap.set('n', '<C-y>',        ':redo<CR>')
 vim.keymap.set('n', '<C-Up>',       ':resize -2<CR>')
 vim.keymap.set('n', '<C-Down>',     ':resize +2<CR>')
+vim.keymap.set('n', '<leader>rf',   ':luafile %<CR>')
 
 vim.keymap.set('n', '<leader>ts',   ':Telescope<CR>')
 vim.keymap.set('n', '<C-f>',        ':Telescope current_buffer_fuzzy_find<CR>')
@@ -21,11 +22,6 @@ vim.keymap.set('n', '<leader>gb',   ':Telescope git_branches<CR>')
 vim.keymap.set('n', 'nv',           ':NvimTreeToggle<CR>')
 vim.keymap.set('n', 'nr',           ':NvimTreeRefresh<CR>')
 vim.keymap.set('n', 'nf',           ':NvimTreeFocus<CR>')
-vim.keymap.set('n', '<leader>rf',   ':luafile %<CR>')
-
-vim.keymap.set('n', '<leader>dv',   ':DiffviewOpen<CR>')
-vim.keymap.set('n', '<leader>df',   ':DiffviewToggleFiles<CR>')
-vim.keymap.set('n', '<leader>nf',   ':DiffviewFocusFiles<CR>')
 
 vim.keymap.set('n', '<space>e',     ':lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', ']d',           ':lua vim.diagnostic.goto_next()<CR>')
@@ -42,7 +38,6 @@ vim.keymap.set('n', '<leader>ac',   ':lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', '<leader>oi',   ':lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })<CR>')
 vim.keymap.set('n', 'gr',           ':lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', 'ff',           ':FormatWrite<CR>')
--- vim.keymap.set('n', 'ff',           ':lua vim.lsp.buf.format({ async = true })<CR>')
 
 vim.keymap.set('n', '<C-t>',        ':tabnew<CR>')
 vim.keymap.set('n', '<C-x>',        ':tabclose<CR>')
@@ -53,14 +48,17 @@ vim.keymap.set('v', 'J',            ':m \'>+1<CR>gv=gv')
 vim.keymap.set('v', 'K',            ':m \'<-2<CR>gv=gv')
 
 vim.keymap.set('x', '<leader>p',    '\"_dP')
-
 vim.keymap.set('n', '<leader>y',    '\"+y')
 vim.keymap.set('v', '<leader>y',    '\"+y')
 vim.keymap.set('n', '<leader>Y',    '\"+Y')
 
+vim.keymap.set('n', '<leader>gl',    ':diffget LOCAL')
+vim.keymap.set('n', '<leader>gb',    ':diffget BASE')
+vim.keymap.set('n', '<leader>gr',    ':diffget REMOTE')
+
 vim.cmd [[
-  sign define DiagnosticSignError text=✖ texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
-  sign define DiagnosticSignWarn text=◼ texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
-  sign define DiagnosticSignInfo text=! texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
-  sign define DiagnosticSignHint text=⚉ texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
+  sign define DiagnosticSignError text=✖  texthl=DiagnosticSignError  linehl=   numhl=DiagnosticLineNrError
+  sign define DiagnosticSignWarn  text=◼  texthl=DiagnosticSignWarn   linehl=   numhl=DiagnosticLineNrWarn
+  sign define DiagnosticSignInfo  text=!  texthl=DiagnosticSignInfo   linehl=   numhl=DiagnosticLineNrInfo
+  sign define DiagnosticSignHint  text=⚉  texthl=DiagnosticSignHint   linehl=   numhl=DiagnosticLineNrHint
 ]]

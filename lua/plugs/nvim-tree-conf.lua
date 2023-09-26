@@ -9,12 +9,18 @@ mod.setup({
     ignore_list = {},
   },
   renderer = {
-    icons = { 
-      webdev_colors = true 
+    icons = {
+      webdev_colors = true,
     },
   },
-  git = { enable = false, ignore = false, timeout = 400 },
-  view = { cursorline = false },
+  git = { 
+    enable = false, 
+    ignore = false, 
+    timeout = 400,
+  },
+  view = { 
+    cursorline = false,
+  },
   diagnostics = {
     enable = true,
     show_on_dirs = false,
@@ -28,4 +34,3 @@ mod.setup({
     },
   },
 })
-

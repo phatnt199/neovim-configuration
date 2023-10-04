@@ -48,9 +48,29 @@ local defaultProps = {
   capabilities = capabilities,
   flags = flags,
   handlers = handlers,
+  settings = {
+    ['rust-analyzer'] = {
+      checkOnSave = {
+        overrideCommand = {
+          'cargo',
+          'clippy',
+          '--workspace',
+          '--message-format=json',
+          '--all-targets',
+          '--all-features'
+        }
+      }
+    },
+  },
 }
 
-local lsps = { 'dartls', 'tsserver', 'rust_analyzer', 'pyright', 'sqlls' }
+local lsps = {
+  'dartls',
+  'tsserver',
+  'rust_analyzer',
+  'pyright',
+  'sqlls',
+}
 for index in ipairs(lsps) do
   local lsp = lsps[index]
   lspConfig[lsp].setup(defaultProps)

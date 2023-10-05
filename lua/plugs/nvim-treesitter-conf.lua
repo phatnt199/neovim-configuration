@@ -8,6 +8,7 @@ mod.setup {
     "dart",
     "dockerfile",
     "dot",
+    "html",
     "http",
     "java",
     "javascript",

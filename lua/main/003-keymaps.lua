@@ -18,10 +18,10 @@ local keymaps = {
   { mode = 'n', shortcut = '<leader>fs',   fn = ':Telescope grep_string<CR>'},
   { mode = 'n', shortcut = '<leader>gc',   fn = ':Telescope git_commits<CR>'},
   { mode = 'n', shortcut = '<leader>gst',  fn = ':Telescope git_status<CR>'},
-  { mode = 'n', shortcut = '<leader>gbr',   fn = ':Telescope git_branches<CR>'},
+  { mode = 'n', shortcut = '<leader>gbr',  fn = ':Telescope git_branches<CR>'},
 
-  { mode = 'n', shortcut = 'nv',           fn = ':NvimTreeToggle<CR>'},
-  { mode = 'n', shortcut = 'nr',           fn = ':NvimTreeRefresh<CR>'},
+  { mode = 'n', shortcut = '<leader>nv',   fn = ':NvimTreeToggle<CR>'},
+  { mode = 'n', shortcut = '<leader>nr',   fn = ':NvimTreeRefresh<CR>'},
   { mode = 'n', shortcut = 'nf',           fn = ':NvimTreeFocus<CR>'},
 
   { mode = 'n', shortcut = '<space>e',     fn = ':lua vim.diagnostic.open_float()<CR>'},
